@@ -1,0 +1,4 @@
+trivia_messenger:
+    resource: "@TriviaMessengerBundle/Resources/config/routing.yml"
+    prefix:   /
+

@@ -1,0 +1,3 @@
+trivia_messenger_homepage:
+    path:  /hello/{name}
+    defaults: { _controller: TriviaMessengerBundle:Default:index }

@@ -1,0 +1,7 @@
+parameters:
+#    trivia_messenger.example.class: Trivia\MessengerBundle\Example
+
+services:
+#    trivia_messenger.example:
+#        class: %trivia_messenger.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
