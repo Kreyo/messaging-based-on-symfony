@@ -1,3 +1,12 @@
 trivia_messenger_homepage:
-    path:  /hello/{name}
-    defaults: { _controller: TriviaMessengerBundle:Default:index }
+    path:  /messages
+    defaults: { _controller: TriviaMessengerBundle:Messages:index }
+trivia_messenger_login:
+    path: /login
+    defaults: { _controller: TriviaMessengerBunlde:User:login }
+trivia_messenger_register:
+    path: /register
+    defaults: { _controller: TriviaMessengerBunlde:User:register }
+trivia_messenger_profile:
+    path: /profile
+    defaults: { _controller: TriviaMessengerBunlde:User:register }
