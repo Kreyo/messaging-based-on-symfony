@@ -30,14 +30,14 @@ class Messages
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="recipient", type="string", length=255)
      */
     private $recipient;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="text", type="string", length=255)
      */
     private $text;
@@ -45,7 +45,7 @@ class Messages
 
     /**
      * Get id
-     *
+     * @Assert\NotBlank()
      * @return integer 
      */
     public function getId()

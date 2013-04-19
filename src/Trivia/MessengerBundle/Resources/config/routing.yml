@@ -10,3 +10,6 @@ trivia_messenger_register:
 trivia_messenger_profile:
     path: /profile
     defaults: { _controller: TriviaMessengerBunlde:User:register }
+trivia_messenger_create:
+    path: /messages/create
+    defaults: { _controller: TriviaMessengerBundle:Messages:create }

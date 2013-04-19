@@ -1,0 +1,9 @@
+{% extends '::base.html.twig' %}
+{% block title %}New message{% endblock %}
+{% block content %}
+    <form action="{{ path('messages/create') }}" method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+
+        <input type="submit" />
+    </form>
+{% endblock %}
