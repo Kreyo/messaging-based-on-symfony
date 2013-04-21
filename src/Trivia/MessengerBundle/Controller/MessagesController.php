@@ -22,7 +22,7 @@ class MessagesController extends Controller
         $form = $this->createFormBuilder($message)
             ->add('name', 'text')
             ->add('recipient', 'text')
-            ->add('text', 'text')
+            ->add('text', 'textarea')
             ->getForm();
         if ($request->isMethod('POST')) {
             $form->bind($request);
