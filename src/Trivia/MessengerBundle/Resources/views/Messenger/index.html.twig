@@ -4,5 +4,11 @@
 Menu here!
 {% endblock %}
 {% block content %}
-Message list here!
+{% for message in messages %}
+    {% if message.recipient == current or message.name == current %}
+      <li>{{ message.name }} -> {{ message.recipient }}</li>
+      <li>{{ message.text }}</li>
+    {% endif %}
+{% endfor %}
+<div class = 'nav nav-button'><a href="/create">Create new message</a></div>
 {% endblock %}

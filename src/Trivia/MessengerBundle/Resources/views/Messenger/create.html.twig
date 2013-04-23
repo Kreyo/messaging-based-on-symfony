@@ -4,7 +4,7 @@
     <form action="{{ path('messages/create') }}" method="post" {{ form_enctype(form) }}>
         {{ form_errors(form) }}
 
-        {{ form_row(form.name) }}
+
         {{ form_row(form.recipient) }}
         {{ form_row(form.text) }}
 

@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity
  */
-class Users implements UserInterface 
+class Users implements UserInterface, \Serializable
 {
     /**
      * @var integer
@@ -95,7 +95,20 @@ class Users implements UserInterface
     public function getRoles(){
         return array('ROLE_USER');
     }
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+        ));
+    }
 
+
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            ) = unserialize($serialized);
+    }
     public function getSalt(){
 
     }

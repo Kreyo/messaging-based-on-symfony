@@ -10,13 +10,18 @@ class MessagesController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('TriviaMessengerBundle:Messenger:base.html.twig');
+        $messages = $this->get('doctrine')->getManager()
+            ->createQuery('SELECT all FROM TriviaMessengerBundle:Messages ')
+            ->execute();
+        $current_user= $this->get('security.context')->getToken()->getUser();
+        $current_user->getUsername();
+        return $this->render('TriviaMessengerBundle:Messenger:base.html.twig', array('messages' => $messages, 'current' => $current_user));
     }
 
     public function createAction(Request $request)
     {
         $message = new Messages();
-        $message->setName('Your name');
+
         $message->setRecipient('Your recipient here');
         $message->setText('Your message text here');
         $form = $this->createFormBuilder($message)
@@ -25,6 +30,9 @@ class MessagesController extends Controller
             ->add('text', 'textarea')
             ->getForm();
         if ($request->isMethod('POST')) {
+            $current_user= $this->get('security.context')->getToken()->getUser();
+            $current_user->getUsername();
+            $message->setName($current_user);
             $form->bind($request);
 
             if ($form->isValid()) {
