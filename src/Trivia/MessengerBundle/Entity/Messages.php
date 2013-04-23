@@ -41,13 +41,20 @@ class Messages
      * @ORM\Column(name="text", type="string", length=255)
      */
     private $text;
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_read", type="boolean")
+     */
 
+    private $is_read;
 
     /**
      * Get id
      * @Assert\NotBlank()
-     * @return integer 
+     * @return integer
      */
+
     public function getId()
     {
         return $this->id;
@@ -120,5 +127,14 @@ class Messages
     public function getText()
     {
         return $this->text;
+    }
+
+    public function setRead(){
+        $this->is_read = true;
+        return $this;
+    }
+
+    public function isRead(){
+        return $this->is_read;
     }
 }

@@ -1,8 +1,7 @@
 {% extends '::base.html.twig' %}
+{% extends isloggedin ? "interfacemenu.html.twig" : "loginmenu.html.twig" %}
 {% block title %}Main{%  endblock %}
-{% block menu %}
-Menu here!
-{% endblock %}
+
 {% block content %}
 {% for message in messages %}
     {% if message.recipient == current or message.name == current %}
@@ -10,5 +9,5 @@ Menu here!
       <li>{{ message.text }}</li>
     {% endif %}
 {% endfor %}
-<div class = 'nav nav-button'><a href="/create">Create new message</a></div>
+<div class = 'btn-success'><a href="/create">Create new message</a></div>
 {% endblock %}
