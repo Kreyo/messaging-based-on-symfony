@@ -11,11 +11,21 @@ class MessagesController extends Controller
     public function indexAction()
     {
         $messages = $this->get('doctrine')->getManager()
-            ->createQuery('SELECT all FROM TriviaMessengerBundle:Messages ')
-            ->execute();
-        $current_user= $this->get('security.context')->getToken()->getUser();
-        $current_user->getUsername();
-        return $this->render('TriviaMessengerBundle:Messenger:base.html.twig', array('messages' => $messages, 'current' => $current_user));
+            ->createQueryBuilder()
+            ->select('m')
+            ->from('TriviaMessengerBundle:Messages', 'm')
+            ->where('m.user = :user OR m.recipient = :user')
+            ->setParameter('user', $this->getUser())
+            ->getQuery()
+            ->getResult();
+        $index_paginator = $this->get('knp_paginator');
+        $pagination = $index_paginator->paginate(
+            $messages,
+            $this->get('request')->query->get('page', 1),
+            10/*limit per page*/
+        );
+
+        return $this->render('TriviaMessengerBundle:Messenger:index.html.twig', array('pagination' => $pagination ));
     }
 
     public function createAction(Request $request)
@@ -30,9 +40,8 @@ class MessagesController extends Controller
             ->add('text', 'textarea')
             ->getForm();
         if ($request->isMethod('POST')) {
-            $current_user= $this->get('security.context')->getToken()->getUser();
-            $current_user->getUsername();
-            $message->setName($current_user);
+;
+            $message->setName($this->getUser());
             $form->bind($request);
 
             if ($form->isValid()) {

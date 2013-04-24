@@ -1,6 +1,8 @@
 trivia_messenger_homepage:
     path:  /messages
     defaults: { _controller: TriviaMessengerBundle:Messages:index }
+trivia_messenger_pagination:
+    path: /messages/{page}
 trivia_messenger_login:
     path: /login
     defaults: { _controller: TriviaMessengerBunlde:User:login }
@@ -15,3 +17,12 @@ trivia_messenger_profile:
 trivia_messenger_create:
     path: /messages/create
     defaults: { _controller: TriviaMessengerBundle:Messages:create }
+trivia_mesenger_view:
+    path: /messages/view
+    defaults: { _controller: TriviaMessengerBundle:Messages:create}
+trivia_messenger_new:
+    path: /messages/new
+    defaults: { _controller: TriviaMessengerBundle:Messages:new}
+trivia_messenger_sent:
+    path: /messages/sent
+    defaults: { _controller: TriviaMessengerBundle:Messages:sent}

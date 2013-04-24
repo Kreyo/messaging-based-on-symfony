@@ -24,7 +24,7 @@ class Messages
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="Users")
      */
     private $name;
 
