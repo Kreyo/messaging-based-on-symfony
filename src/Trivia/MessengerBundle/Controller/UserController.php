@@ -41,13 +41,32 @@ class UserController extends Controller{
             $form->bind($request);
 
             if ($form->isValid()) {
+                $automessage = new Messages();
+                $automessage->setRecipient($user->getUsername());
+                $automessage->setName('System');
+                $automessage->setText('Welcome to our neat little messaging system, ' . $user->getUsername() );
                 $em = $this->getDoctrine()->getManager();
-                $em->persist($user);
+                $em->persist($user, $automessage);
                 $em->flush();
 
                 return $this->redirect($this->generateUrl('messages'));
             }
         }
         return $this->render('TriviaMessengerBundle:Messenger:register.html.twig', array('form' => $form->createView(),));
+    }
+
+    public function profileAction(Request $request){
+        $user = $this->getUser();
+        $form = $this->createFormBuilder($user)
+            ->add('email', 'email')
+            ->getForm();
+        if($request->isMethod('POST')){
+            $form->bind($request);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+            return $this->redirect($this->generateUrl('profile'));
+        }
+        return $this->render('TriviaMessengerBundle:Messenger:profile.html.twig', array('form' => $form->createView(),));
     }
 }

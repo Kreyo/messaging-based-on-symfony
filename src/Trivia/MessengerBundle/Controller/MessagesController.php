@@ -41,7 +41,7 @@ class MessagesController extends Controller
             ->getForm();
         if ($request->isMethod('POST')) {
 ;
-            $message->setName($this->getUser());
+            $message->setUser();
             $form->bind($request);
 
             if ($form->isValid()) {
@@ -54,6 +54,18 @@ class MessagesController extends Controller
         }
         return $this->render('TriviaMessengerBundle:Messenger:create.html.twig', array('form' => $form->createView(),));
 
+    }
+
+    public function viewAction($id){
+        $message = $this->get('doctrine')->getManager()
+            ->createQueryBuilder()
+            ->select('m')
+            ->from('TriviaMessengerBundle:Messages', 'm')
+            ->where('m.id = :id ')
+            ->setParameter('user', $this->$id)
+            ->getQuery()
+            ->getResult();
+        return $this->render('TriviaMessengerBundle :Messenger:view.html.twig', array('message' => $message));
     }
 
 }

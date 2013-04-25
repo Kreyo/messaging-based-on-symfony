@@ -1,0 +1,15 @@
+{% extends '::base.html.twig' %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+    <tr>
+        <td>Username : {{ app.user.username }}</td>
+        <td>Email : {{ app.user.email }}</td>
+        <td>Personal info : I am a banana</td>
+    </tr>
+    <form action="{{ path('profile') }}" method="post" {{ form_enctype(form) }} legend="Change your email">
+        {{ form_errors(form) }}
+
+        {{ form_row(form.email) }}
+        <input type="submit" />
+    </form>
+{% endblock %}

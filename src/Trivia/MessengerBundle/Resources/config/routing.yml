@@ -18,8 +18,8 @@ trivia_messenger_create:
     path: /messages/create
     defaults: { _controller: TriviaMessengerBundle:Messages:create }
 trivia_mesenger_view:
-    path: /messages/view
-    defaults: { _controller: TriviaMessengerBundle:Messages:create}
+    path: /messages/view/{id}
+    defaults: { _controller: TriviaMessengerBundle:Messages:view}
 trivia_messenger_new:
     path: /messages/new
     defaults: { _controller: TriviaMessengerBundle:Messages:new}
