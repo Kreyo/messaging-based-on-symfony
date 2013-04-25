@@ -58,16 +58,14 @@ class MessagesController extends Controller
     }
 
     public function viewAction($id){
-        $message = $this->get('doctrine')->getManager()
-            ->createQueryBuilder()
-            ->select('m')
-            ->from('TriviaMessengerBundle:Messages', 'm')
-            ->where('m.id = :id ')
-            ->setParameter('user', $this->$id)
-            ->getQuery()
-            ->getResult();
+        $message = $this->getRepository('TriviaMessengerBundle:Messages')->findOneById($this->getRequest()->get('id'));
+
+        if (!$message) {
+            throw $this->createNotFoundException('Message not found');
+        }
         if($this->getUser()->getUsername() == $message->getRecipient()){
             $message->setRead();
+            $this->getDoctrine()->getManager()->flush();
         }
         return $this->render('TriviaMessengerBundle :Messenger:view.html.twig', array('message' => $message));
     }
