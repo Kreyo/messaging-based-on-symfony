@@ -7,6 +7,8 @@
             <tr {% if not message.is_read %}class="success" {% endif %}>
                 <td>{{ message.name }} -> {{ message.recipient }}</td>
                 <td>{{ message.text }}</td>
+                <td><a href="messages/view/{{ message.id }}">View</a></td>
+            </tr>
 
      {% endfor %}
 

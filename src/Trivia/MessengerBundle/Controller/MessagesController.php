@@ -65,6 +65,7 @@ class MessagesController extends Controller
             ->setParameter('user', $this->$id)
             ->getQuery()
             ->getResult();
+        $message->setRead();
         return $this->render('TriviaMessengerBundle :Messenger:view.html.twig', array('message' => $message));
     }
 
