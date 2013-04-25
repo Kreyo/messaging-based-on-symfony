@@ -42,6 +42,7 @@ class MessagesController extends Controller
         if ($request->isMethod('POST')) {
 ;
             $message->setUser();
+            $message->setUnread();
             $form->bind($request);
 
             if ($form->isValid()) {
@@ -65,7 +66,9 @@ class MessagesController extends Controller
             ->setParameter('user', $this->$id)
             ->getQuery()
             ->getResult();
-        $message->setRead();
+        if($this->getUser()->getUsername() == $message->getRecipient()){
+            $message->setRead();
+        }
         return $this->render('TriviaMessengerBundle :Messenger:view.html.twig', array('message' => $message));
     }
 

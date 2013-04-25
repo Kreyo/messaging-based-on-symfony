@@ -134,6 +134,11 @@ class Messages
         return $this;
     }
 
+    public function setUnread(){
+        $this->is_read = false;
+        return $this;
+    }
+
     public function isRead(){
         return $this->is_read;
     }
