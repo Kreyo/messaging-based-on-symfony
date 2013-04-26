@@ -3,14 +3,14 @@
 namespace Trivia\MessengerBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Users
  *
  * @ORM\Table()
  * @ORM\Entity
  */
-class Users implements UserInterface
+class Users implements \Symfony\Component\Security\Core\User\UserInterface
 {
     /**
      * @var integer
@@ -23,14 +23,14 @@ class Users implements UserInterface
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="username", type="string", length=255)
      */
     private $username;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="password", type="string", length=255)
      */
     private $password;

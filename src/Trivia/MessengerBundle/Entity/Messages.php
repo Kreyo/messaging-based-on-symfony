@@ -1,7 +1,7 @@
 <?php
 
 namespace Trivia\MessengerBundle\Entity;
-
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -25,6 +25,7 @@ class Messages
      * @var string
      *
      * @ORM\ManyToOne(targetEntity="Users")
+     * @ORM\JoinColumn(name="name", referencedColumnName="Username")
      */
     private $name;
 
@@ -43,7 +44,7 @@ class Messages
     private $text;
     /**
      * @var boolean
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="is_read", type="boolean")
      */
 
@@ -51,7 +52,7 @@ class Messages
 
     /**
      * Get id
-     * @Assert\NotBlank()
+     *
      * @return integer
      */
 

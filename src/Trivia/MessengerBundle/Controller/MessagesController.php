@@ -14,7 +14,7 @@ class MessagesController extends Controller
             ->createQueryBuilder()
             ->select('m')
             ->from('TriviaMessengerBundle:Messages', 'm')
-            ->where('m.user = :user OR m.recipient = :user')
+            ->where('m.name = :user OR m.recipient = :user')
             ->setParameter('user', $this->getUser())
             ->getQuery()
             ->getResult();

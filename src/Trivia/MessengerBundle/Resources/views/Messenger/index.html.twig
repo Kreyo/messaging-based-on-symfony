@@ -1,19 +1,23 @@
 {% extends '::base.html.twig' %}
 
-    {% block title %}Main{% endblock %}
 
-    {% block content %}
-     {% for message in pagination %}
-            <tr {% if not message.is_read %}class="success" {% endif %}>
-                <td>{{ message.name }} -> {{ message.recipient }}</td>
-                <td>{{ message.text }}</td>
-                <td><a href="messages/view/{{ message.id }}">View</a></td>
-            </tr>
+        {% block title %}Main{% endblock %}
 
-     {% endfor %}
 
-     <div class='btn-success'><a href="/create">Create new message</a></div>
-    {% endblock %}
-    <div class="navigation">
-        {{ knp_pagination_render(pagination) }}
-    </div>
+        {% block content %}
+         {% for message in pagination %}
+               <tr {% if not message.is_read %}class="success" {% endif %}>
+                   <td>{{ message.name }} -> {{ message.recipient }}</td>
+                   <td>{{ message.text }}</td>
+                   <td><a href="messages/view/{{ message.id }}">View</a></td>
+               </tr>
+
+         {% endfor %}
+
+        <div class='btn-success'><a href="/create">Create new message</a></div>
+
+        <div class="navigation">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+        {% endblock %}
+

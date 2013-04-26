@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>{% block title %}{% endblock %} - Messenger</title>
+        <title>{% block title %}{% endblock %}-Messenger</title>
     </head>
     <body>
         {% if is_granted('ROLE_USER') %}
@@ -20,20 +20,19 @@
                   </div>
               {% endblock %}
           </div>
-          <div class = "row">
-            {%  block content %} {% endblock %}
-          </div>
         {% else %}
           <div class="row">
             {% block menu %}
                 <div class="span10">
                     <ul class="nav nav-pills">
-                     <li {% if app.request.get('_route') == 'login' %} class="active">{% endif %}><a href="/login">Login</a> </li>
+                        <li {% if app.request.get('_route') == 'login' %} class="active">{% endif %}><a href="/login">Login</a> </li>
                         <li {% if app.request.get('_route') == 'register' %} class="active">{% endif %}><a href="/register" >Register</a></li>
                     </ul>
                 </div>
             {% endblock %}
           </div>
         {% endif %}
+        {% block content %}
+        {% endblock %}
     </body>
 </html>

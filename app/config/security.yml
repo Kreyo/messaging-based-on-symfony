@@ -21,7 +21,7 @@ security:
                     admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
 
     firewalls:
-        dev:
+
         secured_area:
             pattern:  ^/
             anonymous: ~
