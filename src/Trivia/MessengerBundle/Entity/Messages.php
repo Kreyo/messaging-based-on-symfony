@@ -25,7 +25,7 @@ class Messages
      * @var string
      *
      * @ORM\ManyToOne(targetEntity="Users")
-     * @ORM\JoinColumn(name="name", referencedColumnName="Username")
+     * @ORM\JoinColumn(name="name", referencedColumnName="id")
      */
     private $name;
 
