@@ -45,11 +45,11 @@ assetic:
 # Doctrine Configuration
 doctrine:
     dbal:
-        driver:   pdo_mysql
-        host:     localhost
+        driver:   %database_driver%
+        host:     %database_host%
         port:     %database_port%
-        dbname:   symfony_db
-        user:     root
+        dbname:   %database_name%
+        user:     %database_user%
         password:
         charset:  UTF8
         # if using pdo_sqlite as your database driver, add the path in parameters.yml
