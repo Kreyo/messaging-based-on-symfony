@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Trivia\MessengerBundle\Entity\Users;
 use Symfony\Component\Security\Core\SecurityContext;
 class UserController extends Controller{
+
     public function loginAction(){
         $request = $this->getRequest();
         $session = $request->getSession();
@@ -28,6 +29,7 @@ class UserController extends Controller{
             )
         );
     }
+
     public function registerAction(Request $request){
         $user = new Users();
         $user->setUsername('Your username here');
@@ -47,9 +49,12 @@ class UserController extends Controller{
                 $automessage->setName('System');
                 $automessage->setText('Welcome to our neat little messaging system, ' . $user->getUsername() );
                 $em = $this->getDoctrine()->getManager();
-                $em->persist($user, $automessage);
+                $em->persist($user);
+                $em->persist($automessage);
                 $em->flush();
-                $this->($user);
+
+                $token = new UsernamePaswordToken($user, null, 'secured_area', $user->getRoles());
+                $this->get('security.context')->setToken($token);
                 return $this->redirect($this->generateUrl('messages'));
             }
         }
@@ -69,6 +74,11 @@ class UserController extends Controller{
             return $this->redirect($this->generateUrl('profile'));
         }
         return $this->render('TriviaMessengerBundle:Messenger:profile.html.twig', array('form' => $form->createView(),));
+    }
+    public function logoutAction(){
+        $this->get('security.context')->setToken(null);
+        $this->get('request')->getSession()->invalidate();
+        return $this->redirect($this->generateUrl('messages'));
     }
 
 }

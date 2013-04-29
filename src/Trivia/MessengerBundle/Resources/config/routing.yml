@@ -7,7 +7,7 @@ trivia_messenger_login:
     path: /login
     defaults: { _controller: TriviaMessengerBundle:User:login }
 trivia_messenger_login_check:
-    pattern: /login_check
+    path: /login_check
 trivia_messenger_register:
     path: /register
     defaults: { _controller: TriviaMessengerBundle:User:register }
@@ -26,3 +26,6 @@ trivia_messenger_new:
 trivia_messenger_sent:
     path: /messages/sent
     defaults: { _controller: TriviaMessengerBundle:Messages:sent}
+trivia_messenger_logout:
+    path: /logout
+    defaults: { _controller: TriviaMessengerBundle:User:logout}
