@@ -1,7 +1,7 @@
-{% extends '::base.html.twig' %}
-{% block title %}New message{% endblock %}
+{% extends 'TriviaMessengerBundle:Messenger:base.html.twig' %}
+{% block title %}Register{% endblock %}
 {% block content %}
-    <form action="{{ path('register') }}" method="post" {{ form_enctype(form) }}>
+    <form action="/messages" method="post" {{ form_enctype(form) }}>
         {{ form_errors(form) }}
 
         {{ form_row(form.username) }}

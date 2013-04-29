@@ -92,6 +92,17 @@ class Users implements \Symfony\Component\Security\Core\User\UserInterface
         return $this->password;
     }
 
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    public function setEmail($email)
+    {
+        $this->email = $email;
+        return $this;
+    }
+
     public function getRoles(){
         return array('ROLE_USER');
     }

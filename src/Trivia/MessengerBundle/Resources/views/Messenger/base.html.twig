@@ -1,11 +1,13 @@
 <html>
     <head>
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
         <title>{% block title %}{% endblock %}-Messenger</title>
     </head>
     <body>
-        {% if is_granted('ROLE_USER') %}
+        <div class="container">
           <div class = "row">
               {% block menu %}
+              {% if is_granted('ROLE_USER') %}
                   <div class = "span8">
                       <ul class="nav nav-pills">
                           <li {% if app.request.get('_route') == 'profile' %} class="active">{% endif %}<a href = "/profile">Profile</a> </li>
@@ -18,21 +20,21 @@
                           <li><a href="/logout">Logout</a></li>
                       </ul>
                   </div>
+              {% else %}
+                    <div class="span10">
+                        <ul class="nav nav-pills">
+                            <li {% if app.request.get('_route') == 'login' %} class="active">{% endif %}><a href="/login">Login</a> </li>
+                            <li {% if app.request.get('_route') == 'register' %} class="active">{% endif %}><a href="/register" >Register</a></li>
+                        </ul>
+                    </div>
+              {% endif %}
               {% endblock %}
           </div>
-        {% else %}
-          <div class="row">
-            {% block menu %}
-                <div class="span10">
-                    <ul class="nav nav-pills">
-                        <li {% if app.request.get('_route') == 'login' %} class="active">{% endif %}><a href="/login">Login</a> </li>
-                        <li {% if app.request.get('_route') == 'register' %} class="active">{% endif %}><a href="/register" >Register</a></li>
-                    </ul>
-                </div>
-            {% endblock %}
-          </div>
-        {% endif %}
-        {% block content %}
-        {% endblock %}
+
+
+          {% block content %}
+          {% endblock %}
+
+        </div>
     </body>
 </html>

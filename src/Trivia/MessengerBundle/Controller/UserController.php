@@ -3,6 +3,7 @@
 namespace Trivia\MessengerBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Trivia\MessengerBundle\Entity\Users;
 use Symfony\Component\Security\Core\SecurityContext;
 class UserController extends Controller{
@@ -48,7 +49,7 @@ class UserController extends Controller{
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($user, $automessage);
                 $em->flush();
-
+                $this->($user);
                 return $this->redirect($this->generateUrl('messages'));
             }
         }
@@ -69,4 +70,5 @@ class UserController extends Controller{
         }
         return $this->render('TriviaMessengerBundle:Messenger:profile.html.twig', array('form' => $form->createView(),));
     }
+
 }

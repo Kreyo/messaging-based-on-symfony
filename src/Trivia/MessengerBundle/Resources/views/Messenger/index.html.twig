@@ -1,10 +1,11 @@
-{% extends '::base.html.twig' %}
+{% extends 'TriviaMessengerBundle:Messenger:base.html.twig' %}
 
 
         {% block title %}Main{% endblock %}
 
 
         {% block content %}
+        {% if is_granted('ROLE_USER') %}
          {% for message in pagination %}
                <tr {% if not message.is_read %}class="success" {% endif %}>
                    <td>{{ message.name }} -> {{ message.recipient }}</td>
@@ -14,10 +15,11 @@
 
          {% endfor %}
 
-        <div class='btn-success'><a href="/create">Create new message</a></div>
+        <div class='btn-success'><a href="/messages/create">Create new message</a></div>
 
         <div class="navigation">
             {{ knp_pagination_render(pagination) }}
         </div>
+        {% endif %}
         {% endblock %}
 
