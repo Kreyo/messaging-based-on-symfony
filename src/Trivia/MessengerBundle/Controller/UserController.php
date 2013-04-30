@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Trivia\MessengerBundle\Entity\Users;
 use Symfony\Component\Security\Core\SecurityContext;
+use Trivia\MessengerBundle\Entity\Messages;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 class UserController extends Controller{
 
     public function loginAction(){
@@ -32,6 +34,7 @@ class UserController extends Controller{
 
     public function registerAction(Request $request){
         $user = new Users();
+
         $user->setUsername('Your username here');
         $user->setEmail('Your email here');
         $user->setPassword('Password here');
@@ -44,18 +47,22 @@ class UserController extends Controller{
             $form->bind($request);
 
             if ($form->isValid()) {
-                $automessage = new Messages();
-                $automessage->setRecipient($user->getUsername());
-                $automessage->setName('System');
-                $automessage->setText('Welcome to our neat little messaging system, ' . $user->getUsername() );
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($user);
-                $em->persist($automessage);
                 $em->flush();
 
-                $token = new UsernamePaswordToken($user, null, 'secured_area', $user->getRoles());
+            //    $automessage = new Messages();
+            //    $automessage->setRecipient($user->getUsername());
+            //    $botname = $em->getRepository('TriviaMessengerBundle:Users')->find(array('username' => $user->getUsername()));
+            //    $automessage->setName($botname);
+            //    $automessage->setText('Welcome to our neat little messaging system, ' . $user->getUsername() );
+
+            //    $em->persist($automessage);
+            //    $em->flush();
+
+                $token = new UsernamePasswordToken($user, null, 'secured_area', $user->getRoles());
                 $this->get('security.context')->setToken($token);
-                return $this->redirect($this->generateUrl('messages'));
+                return $this->redirect($this->generateUrl('trivia_messenger_homepage'));
             }
         }
         return $this->render('TriviaMessengerBundle:Messenger:register.html.twig', array('form' => $form->createView(),));
@@ -78,7 +85,7 @@ class UserController extends Controller{
     public function logoutAction(){
         $this->get('security.context')->setToken(null);
         $this->get('request')->getSession()->invalidate();
-        return $this->redirect($this->generateUrl('messages'));
+        return $this->redirect($this->generateUrl('trivia_messenger_logout'));
     }
 
 }

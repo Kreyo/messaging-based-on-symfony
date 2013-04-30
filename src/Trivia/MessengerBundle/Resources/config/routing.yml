@@ -1,5 +1,5 @@
 trivia_messenger_homepage:
-    path:  /messages
+    pattern:  /messages
     defaults: { _controller: TriviaMessengerBundle:Messages:index }
 trivia_messenger_pagination:
     path: /messages/{page}
