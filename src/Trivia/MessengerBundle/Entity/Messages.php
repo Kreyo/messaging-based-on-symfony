@@ -22,19 +22,18 @@ class Messages
     private $id;
 
     /**
-     * @var string
+     *
      *
      * @ORM\ManyToOne(targetEntity="Users")
-     * @ORM\JoinColumn(name="name", referencedColumnName="id")
      */
-    private $name;
+    private $fromUser;
 
     /**
-     * @var string
-     * @Assert\NotBlank()
-     * @ORM\Column(name="recipient", type="string", length=255)
+     *
+     *
+     * @ORM\ManyToOne(targetEntity="Users")
      */
-    private $recipient;
+    private $toUser;
 
     /**
      * @var string
@@ -61,50 +60,51 @@ class Messages
         return $this->id;
     }
 
+
     /**
-     * Set name
+     * Set fromUser
      *
-     * @param string $name
+     * @param string $fromUser
      * @return Messages
      */
-    public function setName($name)
+
+    public function setFromUser($fromUser){
+        $this->fromUser = $fromUser;
+        return $this;
+    }
+
+    /**
+     * Get fromUser
+     *
+     * @return string 
+     */
+    public function getFromUser()
     {
-        $this->name = $name;
+        return $this->fromUser;
+    }
+
+    /**
+     * Set toUser
+     *
+     * @param string $toUser
+     * @return Messages
+     */
+
+    public function setToUser($toUser)
+    {
+        $this->toUser = $toUser;
     
         return $this;
     }
 
     /**
-     * Get name
+     * Get toUser
      *
      * @return string 
      */
-    public function getName()
+    public function getToUser()
     {
-        return $this->name;
-    }
-
-    /**
-     * Set recipient
-     *
-     * @param string $recipient
-     * @return Messages
-     */
-    public function setRecipient($recipient)
-    {
-        $this->recipient = $recipient;
-    
-        return $this;
-    }
-
-    /**
-     * Get recipient
-     *
-     * @return string 
-     */
-    public function getRecipient()
-    {
-        return $this->recipient;
+        return $this->toUser;
     }
 
     /**

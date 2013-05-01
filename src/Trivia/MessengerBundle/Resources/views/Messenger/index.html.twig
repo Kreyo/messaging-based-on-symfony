@@ -7,9 +7,9 @@
         {% block content %}
         {% if is_granted('ROLE_USER') %}
          {% for message in pagination %}
-               <tr {% if not message.is_read %}class="success" {% endif %}>
-                   <td>{{ message.name }} -> {{ message.recipient }}</td>
-                   <td>{{ message.text }}</td>
+               <tr {% if not message.isRead %}class="success" {% endif %}>
+                   <td>{{ message.getFromUser() }} -> {{ message.getToUser() }}</td>
+                   <td>{{ message.getText() }}</td>
                    <td><a href="messages/view/{{ message.id }}">View</a></td>
                </tr>
 

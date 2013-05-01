@@ -14,7 +14,7 @@ class MessagesController extends Controller
             ->createQueryBuilder()
             ->select('m')
             ->from('TriviaMessengerBundle:Messages', 'm')
-            ->where('m.name = :user OR m.recipient = :user')
+            ->where('m.fromUser = :user OR m.toUser = :user')
             ->setParameter('user', $this->getUser())
             ->getQuery()
             ->getResult();
@@ -32,7 +32,7 @@ class MessagesController extends Controller
     {
         $message = new Messages();
 
-        $message->setRecipient('Your recipient here');
+        $message->setToUser('Your recipient here');
         $message->setText('Your message text here');
         $form = $this->createFormBuilder($message)
             ->add('name', 'text')
@@ -41,7 +41,7 @@ class MessagesController extends Controller
             ->getForm();
         if ($request->isMethod('POST')) {
 ;
-            $message->setUser();
+            $message->setFromUser($this->getUser());
             $message->setUnread();
             $form->bind($request);
 

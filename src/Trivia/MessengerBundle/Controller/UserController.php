@@ -51,14 +51,14 @@ class UserController extends Controller{
                 $em->persist($user);
                 $em->flush();
 
-            //    $automessage = new Messages();
-            //    $automessage->setRecipient($user->getUsername());
-            //    $botname = $em->getRepository('TriviaMessengerBundle:Users')->find(array('username' => $user->getUsername()));
-            //    $automessage->setName($botname);
-            //    $automessage->setText('Welcome to our neat little messaging system, ' . $user->getUsername() );
+                $automessage = new Messages();
+                $automessage->setToUser($user);
 
-            //    $em->persist($automessage);
-            //    $em->flush();
+                $automessage->setFromUser(null);
+                $automessage->setText('Welcome to our neat little messaging system, ' . $user->getUsername() );
+                $automessage->setUnread();
+                $em->persist($automessage);
+                $em->flush();
 
                 $token = new UsernamePasswordToken($user, null, 'secured_area', $user->getRoles());
                 $this->get('security.context')->setToken($token);
