@@ -52,7 +52,7 @@ class UserController extends Controller{
                 $em->flush();
 
                 $automessage = new Messages();
-                $automessage->setToUser($user);
+                $automessage->setToUser($user->getUsername());
 
                 $automessage->setFromUser(null);
                 $automessage->setText('Welcome to our neat little messaging system, ' . $user->getUsername() );

@@ -1,7 +1,7 @@
 {% extends 'TriviaMessengerBundle:Messenger:base.html.twig' %}
 {% block title %}View message {% endblock %}
 {% block content %}
-    <td>{{ message.getFromUser() }}</td>
+    <td>{{ message.getFromUser().getUsername() }}</td>
     <td>{{ message.getText() }}</td>
     <div class='btn-success'><a href="/create">Reply with a new message</a></div>
 <div class='btn-success'><a href="/index">Back to main</a></div>
