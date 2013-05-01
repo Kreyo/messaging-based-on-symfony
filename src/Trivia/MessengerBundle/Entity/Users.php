@@ -35,12 +35,18 @@ class Users implements \Symfony\Component\Security\Core\User\UserInterface
      */
     private $password;
 
-
+    /**
+     * @var string
+     * @Assert\NotBlank()
+     * @ORM\Column(name="email", type="string", length=255)
+     */
+    private $email;
     /**
      * Get id
      *
      * @return integer 
      */
+
     public function getId()
     {
         return $this->id;

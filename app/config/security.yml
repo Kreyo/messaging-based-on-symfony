@@ -26,8 +26,8 @@ security:
             pattern:  ^/
             anonymous: ~
             form_login:
-              login_path: login
-              check_path: login_check
+              login_path: trivia_messenger_login
+              check_path: trivia_messenger_login_check
 
 
 

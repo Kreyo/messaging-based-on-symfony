@@ -15,7 +15,7 @@ trivia_messenger_profile:
     path: /profile
     defaults: { _controller: TriviaMessengerBundle:User:profile }
 trivia_messenger_create:
-    path: /messages/create
+    pattern: /messages/create
     defaults: { _controller: TriviaMessengerBundle:Messages:create }
 trivia_mesenger_view:
     path: /messages/view/{id}

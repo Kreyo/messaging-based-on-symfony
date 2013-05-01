@@ -1,15 +1,17 @@
-{% extends '::base.html.twig' %}
+{% extends 'TriviaMessengerBundle:Messenger:base.html.twig' %}
 {% block title %}Profile{% endblock %}
 {% block content %}
     <tr>
-        <td>Username : {{ app.user.username }}</td>
-        <td>Email : {{ app.user.email }}</td>
+        <td>Username : {{ app.user.getUsername() }}</td>
+        <td>Email : {{ app.user.getEmail() }}</td>
         <td>Personal info : I am a banana</td>
     </tr>
-    <form action="{{ path('profile') }}" method="post" {{ form_enctype(form) }} legend="Change your email">
-        {{ form_errors(form) }}
+    <form method="post" {{ form_enctype(form) }} legend="Change your email">
 
         {{ form_row(form.email) }}
         <input type="submit" />
     </form>
+
+    <div class='btn btn-success'><a href="{{ path('trivia_messenger_homepage') }}">Back to main</a></div>
+
 {% endblock %}

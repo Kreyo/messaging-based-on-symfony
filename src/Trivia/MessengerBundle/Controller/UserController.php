@@ -78,7 +78,7 @@ class UserController extends Controller{
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
-            return $this->redirect($this->generateUrl('profile'));
+            return $this->redirect($this->generateUrl('trivia_messenger_profile'));
         }
         return $this->render('TriviaMessengerBundle:Messenger:profile.html.twig', array('form' => $form->createView(),));
     }
