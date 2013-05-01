@@ -8,13 +8,13 @@
         {% if is_granted('ROLE_USER') %}
          {% for message in pagination %}
                <tr {% if not message.isRead %}class="success" {% endif %}>
-                   <td>{% if message.getFromUser() != null %}{{ message.getFromUser().getUsername() }} {% endif %} -> {{ message.getToUser().getUsername() }}</td>
+                   <td><b>{% if message.getFromUser() != null %}{{ message.getFromUser().getUsername() }} {% endif %} </b>to <b>{{ message.getToUser().getUsername() }}</b></td>
                    <td>{{ message.getText() }}</td>
                    <td><a href="messages/view/{{ message.id }}">View</a></td>
                </tr>
 
          {% endfor %}
-
+        <br />
         <div class='btn btn-success'><a href="{{ path('trivia_messenger_create') }}">Create new message</a></div>
 
         <div class="navigation">

@@ -4,10 +4,10 @@ trivia_messenger_homepage:
 trivia_messenger_pagination:
     path: /messages/{page}
 trivia_messenger_login:
-    path: /login
+    pattern: /login
     defaults: { _controller: TriviaMessengerBundle:User:login }
 trivia_messenger_login_check:
-    path: /login_check
+    pattern: /login_check
 trivia_messenger_register:
     path: /register
     defaults: { _controller: TriviaMessengerBundle:User:register }

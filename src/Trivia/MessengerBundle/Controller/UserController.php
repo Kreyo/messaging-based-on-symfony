@@ -85,7 +85,7 @@ class UserController extends Controller{
     public function logoutAction(){
         $this->get('security.context')->setToken(null);
         $this->get('request')->getSession()->invalidate();
-        return $this->redirect($this->generateUrl('trivia_messenger_logout'));
+        return $this->redirect($this->generateUrl('trivia_messenger_homepage'));
     }
 
 }

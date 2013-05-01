@@ -5,7 +5,7 @@
       <div>{{ error.message }}</div>
   {% endif %}
 
-  <form action="/login_check" method="post">
+  <form action="{{ path('trivia_messenger_login_check') }}" method="post">
     <label for="username">Username:</label>
     <input type="text" id="username" name="_username" value="{{ last_username }}" />
 
