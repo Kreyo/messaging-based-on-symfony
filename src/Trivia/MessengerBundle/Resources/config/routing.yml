@@ -1,3 +1,7 @@
+trivia_messenger_homepage:
+    pattern:  /messages
+    defaults: { _controller: TriviaMessengerBundle:Messages:index }
+    
 trivia_messenger_pagination:
     path: /messages/{page}
     requirements:
@@ -33,10 +37,6 @@ trivia_messenger_new:
 trivia_messenger_sent:
     path: /messages/sent
     defaults: { _controller: TriviaMessengerBundle:Messages:sent}
-
-trivia_messenger_homepage:
-    pattern:  /messages
-    defaults: { _controller: TriviaMessengerBundle:Messages:index }
 
 trivia_messenger_logout:
     path: /logout
