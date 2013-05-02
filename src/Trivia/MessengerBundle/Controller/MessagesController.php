@@ -28,29 +28,30 @@ class MessagesController extends Controller
         return $this->render('TriviaMessengerBundle:Messenger:index.html.twig', array('pagination' => $pagination ));
     }
 
-    public function createAction(Request $request)
+    public function createAction()
     {
         $message = new Messages();
 
-        $message->setToUser('Your recipient here');
-        $message->setText('Your message text here');
-        $form = $this->createFormBuilder($message)
-            ->add('name', 'text')
-            ->add('recipient', 'text')
+        $form = $this->createFormBuilder()
+
+            ->add('toUser', 'text')
             ->add('text', 'textarea')
             ->getForm();
-        if ($request->isMethod('POST')) {
-;
+        if ($this->getRequest()->isMethod('POST')) {
+
+
+            $message->setText($form["text"]->getData());
             $message->setFromUser($this->getUser());
             $message->setUnread();
-            $form->bind($request);
+            $message->setToUser($this->getDoctrine()->getManager()->getRepository('TriviaMessengerBundle:Users')->findOneByUsername($this->getRequest()->get('toUser')));
+            $form->bind($this->getRequest());
 
             if ($form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($message);
                 $em->flush();
 
-                return $this->redirect($this->generateUrl('messages'));
+                return $this->redirect($this->generateUrl('trivia_messenger_homepage'));
             }
         }
         return $this->render('TriviaMessengerBundle:Messenger:create.html.twig', array('form' => $form->createView(),));

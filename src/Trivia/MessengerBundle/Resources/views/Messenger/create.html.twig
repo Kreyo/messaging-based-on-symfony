@@ -4,13 +4,10 @@
     <form method="post" {{ form_enctype(form) }}>
         {{ form_errors(form) }}
 
-
-        {{ form_row(form.recipient) }}
+        {{ form_row(form.toUser) }}
         {{ form_row(form.text) }}
-
         {{ form_rest(form) }}
-
         <input type="submit" />
     </form>
-    <a href="/index">Back to main</a>
+    <a href="{{ path('trivia_messenger_homepage') }}">Back to main</a>
 {% endblock %}

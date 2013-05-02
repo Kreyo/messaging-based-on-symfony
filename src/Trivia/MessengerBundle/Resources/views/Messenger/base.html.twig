@@ -11,7 +11,7 @@
                   <div class = "span8">
                       <ul class="nav nav-pills">
                           <li {% if app.request.get('_route') == 'profile' %} class="active">{% endif %}><a href = "/profile">Profile</a> </li>
-                          <li {% if app.request.get('_route') == 'new' %} class="active">{% endif %}><a href = "/messages/new" >New Messages</a></li>
+                          <li {% if app.request.get('_route') == 'create' %} class="active">{% endif %}><a href = "/messages/new" >New Messages</a></li>
                           <li {% if app.request.get('_route') == 'sent' %} class="active">{% endif %}><a href ="/messages/sent">Sent Messages</a></li>
                       </ul>
                   </div>

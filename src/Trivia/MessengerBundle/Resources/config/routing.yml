@@ -1,31 +1,57 @@
+<<<<<<< HEAD
 trivia_messenger_homepage:
     pattern:  /messages
     defaults: { _controller: TriviaMessengerBundle:Messages:index }
+    
 trivia_messenger_pagination:
     path: /messages/{page}
+    requirements:
+      page: \d+
+=======
+trivia_messenger_pagination:
+    path: /messages/{page}
+    requirements:
+        page: "[0-9]+"
+>>>>>>> 298b0f699f129bf71dc2613aa5fef911feab4f04
+
 trivia_messenger_login:
     pattern: /login
     defaults: { _controller: TriviaMessengerBundle:User:login }
+
 trivia_messenger_login_check:
     pattern: /login_check
+
 trivia_messenger_register:
     path: /register
     defaults: { _controller: TriviaMessengerBundle:User:register }
+
 trivia_messenger_profile:
     path: /profile
     defaults: { _controller: TriviaMessengerBundle:User:profile }
+
 trivia_messenger_create:
-    pattern: /messages/create
+    path: /messages/create
     defaults: { _controller: TriviaMessengerBundle:Messages:create }
+
 trivia_mesenger_view:
     path: /messages/view/{id}
     defaults: { _controller: TriviaMessengerBundle:Messages:view}
+
 trivia_messenger_new:
     path: /messages/new
     defaults: { _controller: TriviaMessengerBundle:Messages:new}
+
 trivia_messenger_sent:
     path: /messages/sent
     defaults: { _controller: TriviaMessengerBundle:Messages:sent}
+
+<<<<<<< HEAD
+=======
+trivia_messenger_homepage:
+    pattern:  /messages
+    defaults: { _controller: TriviaMessengerBundle:Messages:index }
+
+>>>>>>> 298b0f699f129bf71dc2613aa5fef911feab4f04
 trivia_messenger_logout:
     path: /logout
     defaults: { _controller: TriviaMessengerBundle:User:logout}
