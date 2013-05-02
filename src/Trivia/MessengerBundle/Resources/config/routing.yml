@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 trivia_messenger_homepage:
     pattern:  /messages
     defaults: { _controller: TriviaMessengerBundle:Messages:index }
@@ -6,17 +6,8 @@ trivia_messenger_homepage:
 trivia_messenger_pagination:
     path: /messages/{page}
     requirements:
-<<<<<<< HEAD
       page: \d+
-=======
-trivia_messenger_pagination:
-    path: /messages/{page}
-    requirements:
-        page: "[0-9]+"
->>>>>>> 298b0f699f129bf71dc2613aa5fef911feab4f04
-=======
-        page: "[0-9]+"
->>>>>>> 702dd4b6b20b8a43f7058a0053edfdc12854e51d
+
 
 trivia_messenger_login:
     pattern: /login
@@ -49,16 +40,6 @@ trivia_messenger_sent:
     path: /messages/sent
     defaults: { _controller: TriviaMessengerBundle:Messages:sent}
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-trivia_messenger_homepage:
-    pattern:  /messages
-    defaults: { _controller: TriviaMessengerBundle:Messages:index }
-
->>>>>>> 298b0f699f129bf71dc2613aa5fef911feab4f04
-=======
->>>>>>> 702dd4b6b20b8a43f7058a0053edfdc12854e51d
 trivia_messenger_logout:
     path: /logout
     defaults: { _controller: TriviaMessengerBundle:User:logout}
