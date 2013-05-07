@@ -1,45 +1,33 @@
-
 trivia_messenger_homepage:
     pattern:  /messages
     defaults: { _controller: TriviaMessengerBundle:Messages:index }
-    
 trivia_messenger_pagination:
     path: /messages/{page}
     requirements:
       page: \d+
-
-
 trivia_messenger_login:
     pattern: /login
     defaults: { _controller: TriviaMessengerBundle:User:login }
-
 trivia_messenger_login_check:
     pattern: /login_check
-
 trivia_messenger_register:
     path: /register
     defaults: { _controller: TriviaMessengerBundle:User:register }
-
 trivia_messenger_profile:
     path: /profile
     defaults: { _controller: TriviaMessengerBundle:User:profile }
-
 trivia_messenger_create:
     path: /messages/create
     defaults: { _controller: TriviaMessengerBundle:Messages:create }
-
-trivia_mesenger_view:
+trivia_messenger_view:
     path: /messages/view/{id}
     defaults: { _controller: TriviaMessengerBundle:Messages:view}
-
 trivia_messenger_new:
     path: /messages/new
     defaults: { _controller: TriviaMessengerBundle:Messages:new}
-
 trivia_messenger_sent:
     path: /messages/sent
     defaults: { _controller: TriviaMessengerBundle:Messages:sent}
-
 trivia_messenger_logout:
     path: /logout
     defaults: { _controller: TriviaMessengerBundle:User:logout}
