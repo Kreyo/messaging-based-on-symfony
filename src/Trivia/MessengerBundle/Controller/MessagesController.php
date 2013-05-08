@@ -28,23 +28,26 @@ class MessagesController extends Controller
         return $this->render('TriviaMessengerBundle:Messenger:index.html.twig', array('pagination' => $pagination ));
     }
 
-    public function createAction()
+    public function createAction(Request $request)
     {
         $message = new Messages();
-
         $form = $this->createFormBuilder()
 
             ->add('toUser', 'text')
             ->add('text', 'textarea')
             ->getForm();
-        $form->bind($this->getRequest());
-        if ($this->getRequest()->isMethod('POST')) {
+
+        if ($request->isMethod('POST')) {
+
+            $form->bind($request);
+            $formData = $form->getData();
 
 
-            $message->setText($this->getRequest()->get('text'));
+
+            $message->setText($formData['text']);
             $message->setFromUser($this->getUser());
             $message->setUnread();
-            $message->setToUser($this->getDoctrine()->getManager()->getRepository('TriviaMessengerBundle:Users')->findOneByUsername($this->getRequest()->get('toUser')));
+            $message->setToUser($this->getDoctrine()->getManager()->getRepository('TriviaMessengerBundle:Users')->findOneByUsername($formData['toUser']));
 
 
             if ($form->isValid()) {

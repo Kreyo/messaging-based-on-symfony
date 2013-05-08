@@ -1,7 +1,7 @@
 {% extends 'TriviaMessengerBundle:Messenger:base.html.twig' %}
 {% block title %}New message{% endblock %}
 {% block content %}
-    <form method="post" {{ form_enctype(form) }}>
+    <form method="post" {{ form_enctype(form) }} action="{{ path('trivia_messenger_create') }}">
         {{ form_errors(form) }}
 
         {{ form_row(form.toUser) }}

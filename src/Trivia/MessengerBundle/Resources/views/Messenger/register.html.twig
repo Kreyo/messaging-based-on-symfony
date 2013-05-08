@@ -4,9 +4,9 @@
     <form method="post" {{ form_enctype(form) }}>
         {{ form_errors(form) }}
 
-        {{ form_row(form.username) }}
-        {{ form_row(form.email) }}
-        {{ form_row(form.password) }}
+        {{ form_row(form.username, { 'type':'text','attr':{'placeholder': "Your Username",}}) }}
+        {{ form_row(form.email, { 'type':'email','attr':{'placeholder': "Your Email",}}) }}
+        {{ form_row(form.password, { 'type':'password','attr':{'placeholder': "password",}}) }}
 
         {{ form_rest(form) }}
 

@@ -35,9 +35,9 @@ class UserController extends Controller{
     public function registerAction(Request $request){
         $user = new Users();
 
-        $user->setUsername('Your username here');
-        $user->setEmail('Your email here');
-        $user->setPassword('Password here');
+        $user->setUsername('');
+        $user->setEmail('');
+        $user->setPassword('');
         $form = $this->createFormBuilder($user)
             ->add('username', 'text')
             ->add('email', 'email')

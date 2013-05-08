@@ -15,7 +15,7 @@
                 <tr>
                     <td><b>{% if message.getFromUser() != null %}{{ message.getFromUser().getUsername() }} {% endif %} </b>to <b>{{ message.getToUser().getUsername() }}</b></td>
                     <td>{{ message.getText() }}</td>
-                    <td><a href="messages/view/{{ message.id }}">View</a></td>
+                    <td><a href="view/{{ message.id }}">View</a></td>
                 </tr>
 
             {% endfor %}

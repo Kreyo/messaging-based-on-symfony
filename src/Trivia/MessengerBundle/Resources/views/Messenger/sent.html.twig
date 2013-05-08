@@ -6,12 +6,17 @@
 
 {% block content %}
     {% if is_granted('ROLE_USER') %}
+       {% if pagination is empty %}
+        <p>You have yet sent nothing!</p>
+        <br />
+        <div class='btn btn-success'><a href="{{ path('trivia_messenger_create') }}">Create new message</a></div>
+       {% else %}
         <table class="table">
             {% for message in pagination %}
                 <tr>
                     <td><b>{% if message.getFromUser() != null %}{{ message.getFromUser().getUsername() }} {% endif %} </b>to <b>{{ message.getToUser().getUsername() }}</b></td>
                     <td>{{ message.getText() }}</td>
-                    <td><a href="messages/view/{{ message.id }}">View</a></td>
+                    <td><a href="view/{{ message.id }}">View</a></td>
                 </tr>
 
             {% endfor %}
@@ -22,5 +27,6 @@
         <div class="navigation">
             {{ knp_pagination_render(pagination) }}
         </div>
+      {% endif %}
     {% endif %}
 {% endblock %}
