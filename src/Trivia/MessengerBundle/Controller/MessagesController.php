@@ -5,11 +5,24 @@ namespace Trivia\MessengerBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Trivia\MessengerBundle\Entity\Messages;
+use Symfony\Component\Security\Core\SecurityContext;
 
 class MessagesController extends Controller
 {
     public function indexAction()
     {
+        $request = $this->getRequest();
+        $session = $request->getSession();
+
+        if($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)){
+            $error = $request->attributes->get(
+                SecurityContext::AUTHENTICATION_ERROR
+            );
+        } else {
+            $error = $session->get(SecurityContext::AUTHENTICATION_ERROR);
+            $session->remove(SecurityContext::AUTHENTICATION_ERROR);
+
+        }
         $messages = $this->get('doctrine')->getManager()
             ->createQueryBuilder()
             ->select('m')
@@ -25,7 +38,10 @@ class MessagesController extends Controller
             10/*limit per page*/
         );
 
-        return $this->render('TriviaMessengerBundle:Messenger:index.html.twig', array('pagination' => $pagination ));
+        return $this->render('TriviaMessengerBundle:Messenger:index.html.twig',
+            array('pagination' => $pagination,
+                  'last_username' => $session->get(SecurityContext::LAST_USERNAME),
+                  'error' => $error,));
     }
 
     public function createAction(Request $request)

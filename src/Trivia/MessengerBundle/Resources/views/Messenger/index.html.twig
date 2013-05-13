@@ -24,6 +24,21 @@
         {{ knp_pagination_render(pagination) }}
      </div>
      {% endif %}
+ {% else %}
+     {% if error %}
+         <div>{{ error.message }}</div>
+     {% endif %}
+
+     <form action="{{ path('trivia_messenger_login_check') }}" method="post">
+         <label for="username">Username:</label>
+         <input type="text" id="username" name="_username" value="{{ last_username }}" />
+
+         <label for="password">Password:</label>
+         <input type="password" id="password" name="_password" />
+         <input type="hidden" name="_target_path" value="/messages" />
+
+         <button type="submit">login</button>
+     </form>
  {% endif %}
 {% endblock %}
 

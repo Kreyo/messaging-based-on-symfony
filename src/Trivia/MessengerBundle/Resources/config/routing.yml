@@ -1,6 +1,9 @@
 trivia_messenger_homepage:
     pattern:  /messages
     defaults: { _controller: TriviaMessengerBundle:Messages:index }
+trivia_messenger_redirect:
+    pattern:  /
+    defaults: { _controller: TriviaMessengerBundle:System:redirect }
 trivia_messenger_pagination:
     path: /messages/{page}
     requirements:

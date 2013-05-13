@@ -35,24 +35,28 @@ class UserController extends Controller{
     public function registerAction(Request $request){
         $user = new Users();
 
-        $user->setUsername('');
-        $user->setEmail('');
-        $user->setPassword('');
-        $form = $this->createFormBuilder($user)
+        $form = $this->createFormBuilder()
             ->add('username', 'text')
             ->add('email', 'email')
-            ->add('password', 'password')
+            ->add('password', 'repeated', array(
+                    'type' => 'password',
+                    'invalid_message' => 'Password fields must be equal! Hail the equality!',
+
+        ))
             ->getForm();
         if ($request->isMethod('POST')) {
             $form->bind($request);
-
-            if ($form->isValid()) {
+            $formData = $form->getData();
+            $user->setUsername($formData['username']);
+            $user->setEmail($formData['email']);
+            $user->setPassword($formData['password']);
+            if ($form->isValid() && $this->getDoctrine()->getRepository('TriviaMessengerBundle:Users')->findOneByUsername($formData['username'])==null) {
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($user);
                 $em->flush();
 
                 $automessage = new Messages();
-                $automessage->setToUser($user->getUsername());
+                $automessage->setToUser($user);
 
                 $automessage->setFromUser(null);
                 $automessage->setText('Welcome to our neat little messaging system, ' . $user->getUsername() );

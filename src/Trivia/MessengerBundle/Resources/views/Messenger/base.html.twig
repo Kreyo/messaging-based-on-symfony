@@ -23,8 +23,8 @@
               {% else %}
                     <div class="span10">
                         <ul class="nav nav-pills">
-                            <li {% if app.request.get('_route') == 'login' %} class="active">{% endif %}><a href="/login">Login</a> </li>
-                            <li {% if app.request.get('_route') == 'register' %} class="active">{% endif %}><a href="/register" >Register</a></li>
+                            <li {% if app.request.get('_route') == 'login' %} class="active">{% endif %}><a href={{ path('trivia_messenger_login') }}>Login</a> </li>
+                            <li {% if app.request.get('_route') == 'register' %} class="active">{% endif %}><a href={{ path('trivia_messenger_register') }} >Register</a></li>
                         </ul>
                     </div>
               {% endif %}
