@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Trivia\MessengerBundle\Entity\Messages;
 use Symfony\Component\Security\Core\SecurityContext;
+use Symfony\Component\Form\FormError;
 
 class MessagesController extends Controller
 {
@@ -66,13 +67,15 @@ class MessagesController extends Controller
             $message->setToUser($this->getDoctrine()->getManager()->getRepository('TriviaMessengerBundle:Users')->findOneByUsername($formData['toUser']));
 
 
-            if ($form->isValid()) {
+            if ($form->isValid() && $this->getDoctrine()->getRepository('TriviaMessengerBundle:Users')->findOneByUsername($formData['toUser'])!=null) {
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($message);
                 $em->flush();
 
                 return $this->redirect($this->generateUrl('trivia_messenger_homepage'));
+
             }
+            else $form->get('toUser')->addError(new FormError('You must enter an existing username!'));
         }
         return $this->render('TriviaMessengerBundle:Messenger:create.html.twig', array('form' => $form->createView(),));
 

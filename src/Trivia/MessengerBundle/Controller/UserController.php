@@ -8,6 +8,7 @@ use Trivia\MessengerBundle\Entity\Users;
 use Symfony\Component\Security\Core\SecurityContext;
 use Trivia\MessengerBundle\Entity\Messages;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use Symfony\Component\Form\FormError;
 class UserController extends Controller{
 
     public function loginAction(){
@@ -68,6 +69,7 @@ class UserController extends Controller{
                 $this->get('security.context')->setToken($token);
                 return $this->redirect($this->generateUrl('trivia_messenger_homepage'));
             }
+            else $form->get('username')->addError(new FormError('Well, this is awkward. Such username already exists!'));
         }
         return $this->render('TriviaMessengerBundle:Messenger:register.html.twig', array('form' => $form->createView(),));
     }
