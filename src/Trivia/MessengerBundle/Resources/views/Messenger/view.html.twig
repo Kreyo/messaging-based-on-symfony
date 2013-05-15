@@ -3,6 +3,8 @@
 {% block content %}
     {% if message.getFromUser() != null %} <td> from <b>{{ message.getFromUser().getUsername() }}</b>{%  endif %} to <b>{{ message.getToUser().getUsername() }}</b></td>
     <td>{{ message.getText() }}</td>
-    <div class='btn-success'><a href="{{ path('trivia_messenger_create') }}">Reply with a new message</a></div>
-    <div class='btn-success'><a href="{{ path('trivia_messenger_homepage') }}">Back to main</a></div>
+    <br />
+    <div class="btn"><a href="{{ path('trivia_messenger_create') }}">Reply with a new message</a></div>
+    <br />
+    <div class="btn"><a href="{{ path('trivia_messenger_homepage') }}">Back to main</a></div>
 {% endblock %}

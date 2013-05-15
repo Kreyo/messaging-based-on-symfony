@@ -18,7 +18,7 @@
          {% endfor %}
     </table>
     <br />
-    <div class='btn btn-success'><a href="{{ path('trivia_messenger_create') }}">Create new message</a></div>
+    <div class='btn'><a href="{{ path('trivia_messenger_create') }}">Create new message</a></div>
 
      <div class="navigation">
         {{ knp_pagination_render(pagination) }}
@@ -36,8 +36,8 @@
          <label for="password">Password:</label>
          <input type="password" id="password" name="_password" />
          <input type="hidden" name="_target_path" value="/messages" />
-
-         <button type="submit">login</button>
+         <br />
+         <button type="submit" class="btn">login</button>
      </form>
  {% endif %}
 {% endblock %}

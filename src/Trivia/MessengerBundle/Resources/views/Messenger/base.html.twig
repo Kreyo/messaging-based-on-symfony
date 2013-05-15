@@ -8,11 +8,11 @@
           <div class = "row">
               {% block menu %}
               {% if is_granted('ROLE_USER') %}
-                  <div class = "span8">
+                  <div class = "span10">
                       <ul class="nav nav-pills">
-                          <li {% if app.request.get('_route') == 'trivia_messenger_profile' %} class="active"{% endif %}><a href = "/profile"> Profile </a> </li>
-                          <li {% if app.request.get('_route') == 'trivia_messenger_new' %} class="active"{% endif %}><a href = "/messages/new" >New Messages</a></li>
-                          <li {% if app.request.get('_route') == 'trivia_messenger_sent' %} class="active"{% endif %}><a href ="/messages/sent">Sent Messages</a></li>
+                          <li {% if app.request.get('_route') == 'trivia_messenger_profile' %} class="active"{% endif %}><a href = "{{ path('trivia_messenger_profile') }}"> Profile </a> </li>
+                          <li {% if app.request.get('_route') == 'trivia_messenger_new' %} class="active"{% endif %}><a href = "{{ path('trivia_messenger_new') }}" >New Messages</a></li>
+                          <li {% if app.request.get('_route') == 'trivia_messenger_sent' %} class="active"{% endif %}><a href ="{{ path('trivia_messenger_sent') }}">Sent Messages</a></li>
                       </ul>
                   </div>
                   <div class="span2">
@@ -23,8 +23,8 @@
               {% else %}
                     <div class="span10">
                         <ul class="nav nav-pills">
-                            <li {% if app.request.get('_route') == 'login' %} class="active">{% endif %}><a href={{ path('trivia_messenger_login') }}>Login</a> </li>
-                            <li {% if app.request.get('_route') == 'register' %} class="active">{% endif %}><a href={{ path('trivia_messenger_register') }} >Register</a></li>
+                            <li {% if app.request.get('_route') == 'trivia_messenger_login' %} class="active"{% endif %}><a href="{{ path('trivia_messenger_login') }}">Login</a> </li>
+                            <li {% if app.request.get('_route') == 'trivia_messenger_register' %} class="active"{% endif %}><a href="{{ path('trivia_messenger_register') }}">Register</a></li>
                         </ul>
                     </div>
               {% endif %}
