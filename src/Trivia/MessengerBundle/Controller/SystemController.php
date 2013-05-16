@@ -4,6 +4,8 @@ namespace Trivia\MessengerBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
+
 
 class SystemController extends Controller
 {
@@ -14,29 +16,32 @@ class SystemController extends Controller
     public function autocompleteAction(){
         if ( !isset($_REQUEST['term']) )
             exit;
-        $rs = $this->getDoctrine()->getManager()
+        $results = $this->getDoctrine()->getManager()
             ->createQueryBuilder()
             ->select('user')
             ->from('TriviaMessengerBundle:Users', 'user')
-            ->where('user like :term')
-            ->setParameter('term',$_REQUEST['term'] )
+            ->where('user.username like :term')
+            ->setParameter('term',$this->getRequest()->get('term') )
             ->getQuery()
             ->getResult();
-        if ( $rs && mysql_num_rows($rs) )
-        {
-            while( $row = mysql_fetch_array($rs, MYSQL_ASSOC) )
+        $suggestions=array();
+
+
+            foreach($results as $user)
             {
-                $data[] = array(
-                    'label' => $row['Id'],
-                    'value' => $row['Username']
+                $suggestions = array(
+                    'label' => $user->getId(),
+                    'value' => $user->getUsername(),
                 );
+
+
             }
-        }
+
 
 // jQuery wants JSON data
-        echo json_encode($data);
+        echo json_encode($suggestions);
         flush();
-        return $data;
+        return new JsonResponse(array('suggestions'=>$suggestions));
     }
 
 }
