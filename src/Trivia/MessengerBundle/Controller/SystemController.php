@@ -14,34 +14,29 @@ class SystemController extends Controller
     }
 
     public function autocompleteAction(){
-        if ( !isset($_REQUEST['term']) )
-            exit;
+        if (!$this->getRequest()->get('term')) {
+            return new JsonResponse(array());
+        }
+
         $results = $this->getDoctrine()->getManager()
             ->createQueryBuilder()
             ->select('user')
             ->from('TriviaMessengerBundle:Users', 'user')
-            ->where('user.username like :term')
-            ->setParameter('term',$this->getRequest()->get('term') )
+            ->where('user.username LIKE :term')
+            ->setParameter('term', $this->getRequest()->get('term') .'%' )
             ->getQuery()
             ->getResult();
-        $suggestions=array();
+
+        $suggestions = array();
 
 
-            foreach($results as $user)
-            {
-                $suggestions = array(
-                    'label' => $user->getId(),
-                    'value' => $user->getUsername(),
-                );
+        foreach($results as $user)  {
+            $suggestions[] = array(
+                'label' => $user->getId(),
+                'value' => $user->getUsername(),
+            );
+        }
 
-
-            }
-
-
-// jQuery wants JSON data
-        echo json_encode($suggestions);
-        flush();
-        return new JsonResponse(array('suggestions'=>$suggestions));
+        return new JsonResponse($suggestions);
     }
-
 }
