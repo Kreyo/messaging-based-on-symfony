@@ -15,7 +15,7 @@ class MessagesController extends Controller
         $request = $this->getRequest();
         $session = $request->getSession();
 
-        if($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)){
+        if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {
             $error = $request->attributes->get(
                 SecurityContext::AUTHENTICATION_ERROR
             );
@@ -59,13 +59,10 @@ class MessagesController extends Controller
             $form->bind($request);
             $formData = $form->getData();
 
-
-
             $message->setText($formData['text']);
             $message->setFromUser($this->getUser());
             $message->setUnread();
             $message->setToUser($this->getDoctrine()->getManager()->getRepository('TriviaMessengerBundle:Users')->findOneByUsername($formData['toUser']));
-
 
             if ($form->isValid() && $this->getDoctrine()->getRepository('TriviaMessengerBundle:Users')->findOneByUsername($formData['toUser'])!=null) {
                 $em = $this->getDoctrine()->getManager();
@@ -74,23 +71,25 @@ class MessagesController extends Controller
 
                 return $this->redirect($this->generateUrl('trivia_messenger_homepage'));
 
-            }
-            else $form->get('toUser')->addError(new FormError('You must enter an existing username!'));
+            } else $form->get('toUser')->addError(new FormError('You must enter an existing username!'));
         }
+
         return $this->render('TriviaMessengerBundle:Messenger:create.html.twig', array('form' => $form->createView(),));
 
     }
 
-    public function viewAction($id){
+    public function viewAction($id)
+    {
         $message = $this->getDoctrine()->getManager()->getRepository('TriviaMessengerBundle:Messages')->findOneById($this->getRequest()->get('id'));
 
         if (!$message) {
             throw $this->createNotFoundException('Message not found');
         }
-        if($this->getUser()->getUsername() == $message->getToUser()->getUsername()){
+        if ($this->getUser()->getUsername() == $message->getToUser()->getUsername()) {
             $message->setRead();
             $this->getDoctrine()->getManager()->flush();
         }
+
         return $this->render('TriviaMessengerBundle:Messenger:view.html.twig', array('message' => $message));
     }
     public function newAction()
@@ -99,7 +98,7 @@ class MessagesController extends Controller
             ->createQueryBuilder()
             ->select('m')
             ->from('TriviaMessengerBundle:Messages', 'm')
-            ->where('m.is_read = :false AND m.fromUser = :user OR m.toUser = :user AND m.is_read = :false')
+            ->where('m.toUser = :user AND m.is_read = :false')
             ->setParameters(array(
                             'user' => $this->getUser(),
                             'false'=> false,
@@ -113,6 +112,7 @@ class MessagesController extends Controller
             $this->get('request')->query->get('page', 1),
             10/*limit per page*/
         );
+
         return $this->render('TriviaMessengerBundle:Messenger:new.html.twig', array('pagination' => $pagination ));
     }
     public function sentAction()

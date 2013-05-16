@@ -3,17 +3,17 @@
 namespace Trivia\MessengerBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
-
 
 class SystemController extends Controller
 {
-    public function redirectAction(){
+    public function redirectAction()
+    {
         return $this->redirect($this->generateUrl('trivia_messenger_homepage'));
     }
 
-    public function autocompleteAction(){
+    public function autocompleteAction()
+    {
         if (!$this->getRequest()->get('term')) {
             return new JsonResponse(array());
         }
@@ -29,10 +29,9 @@ class SystemController extends Controller
 
         $suggestions = array();
 
-
-        foreach($results as $user)  {
+        foreach ($results as $user) {
             $suggestions[] = array(
-                'label' => $user->getId(),
+                'label' => $user->getUsername(),
                 'value' => $user->getUsername(),
             );
         }

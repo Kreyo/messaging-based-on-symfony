@@ -17,12 +17,13 @@
 
          {% endfor %}
     </table>
+    <div class="navigation">
+         {{ knp_pagination_render(pagination) }}
+    </div>
     <br />
     <div class='btn'><a href="{{ path('trivia_messenger_create') }}">Create new message</a></div>
 
-     <div class="navigation">
-        {{ knp_pagination_render(pagination) }}
-     </div>
+
      {% endif %}
  {% else %}
      {% if error %}
@@ -41,4 +42,3 @@
      </form>
  {% endif %}
 {% endblock %}
-

@@ -8,6 +8,8 @@
     {% if is_granted('ROLE_USER') %}
        {% if pagination is empty %}
         <p>You have yet sent nothing!</p>
+        <div class='btn'><a href="{{ path('trivia_messenger_create') }}">Create new message</a></div>
+        <div class='btn'><a href="{{ path('trivia_messenger_homepage') }}">Back to main</a></div>
         <br />
         <div class='btn btn-success'><a href="{{ path('trivia_messenger_create') }}">Create new message</a></div>
        {% else %}
@@ -21,12 +23,14 @@
 
             {% endfor %}
         </table>
-        <br />
-        <div class='btn btn-success'><a href="{{ path('trivia_messenger_create') }}">Create new message</a></div>
-
         <div class="navigation">
             {{ knp_pagination_render(pagination) }}
         </div>
+        <br />
+        <div class='btn'><a href="{{ path('trivia_messenger_create') }}">Create new message</a></div>
+        <br/>
+        <div class='btn'><a href="{{ path('trivia_messenger_homepage') }}">Back to main</a></div>
+
       {% endif %}
     {% endif %}
 {% endblock %}

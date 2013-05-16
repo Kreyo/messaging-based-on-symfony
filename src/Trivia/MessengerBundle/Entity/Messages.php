@@ -60,23 +60,24 @@ class Messages
         return $this->id;
     }
 
-
     /**
      * Set fromUser
      *
-     * @param string $fromUser
+     * @param  string   $fromUser
      * @return Messages
      */
 
-    public function setFromUser($fromUser){
+    public function setFromUser($fromUser)
+    {
         $this->fromUser = $fromUser;
+
         return $this;
     }
 
     /**
      * Get fromUser
      *
-     * @return string 
+     * @return string
      */
     public function getFromUser()
     {
@@ -86,21 +87,21 @@ class Messages
     /**
      * Set toUser
      *
-     * @param string $toUser
+     * @param  string   $toUser
      * @return Messages
      */
 
     public function setToUser($toUser)
     {
         $this->toUser = $toUser;
-    
+
         return $this;
     }
 
     /**
      * Get toUser
      *
-     * @return string 
+     * @return string
      */
     public function getToUser()
     {
@@ -110,37 +111,42 @@ class Messages
     /**
      * Set text
      *
-     * @param string $text
+     * @param  string   $text
      * @return Messages
      */
     public function setText($text)
     {
         $this->text = $text;
-    
+
         return $this;
     }
 
     /**
      * Get text
      *
-     * @return string 
+     * @return string
      */
     public function getText()
     {
         return $this->text;
     }
 
-    public function setRead(){
+    public function setRead()
+    {
         $this->is_read = true;
+
         return $this;
     }
 
-    public function setUnread(){
+    public function setUnread()
+    {
         $this->is_read = false;
+
         return $this;
     }
 
-    public function isRead(){
+    public function isRead()
+    {
         return $this->is_read;
     }
 }

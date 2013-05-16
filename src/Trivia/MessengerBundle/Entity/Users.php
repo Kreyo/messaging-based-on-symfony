@@ -44,7 +44,7 @@ class Users implements \Symfony\Component\Security\Core\User\UserInterface
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
 
     public function getId()
@@ -55,20 +55,20 @@ class Users implements \Symfony\Component\Security\Core\User\UserInterface
     /**
      * Set username
      *
-     * @param string $username
+     * @param  string $username
      * @return Users
      */
     public function setUsername($username)
     {
         $this->username = $username;
-    
+
         return $this;
     }
 
     /**
      * Get username
      *
-     * @return string 
+     * @return string
      */
     public function getUsername()
     {
@@ -78,20 +78,20 @@ class Users implements \Symfony\Component\Security\Core\User\UserInterface
     /**
      * Set password
      *
-     * @param string $password
+     * @param  string $password
      * @return Users
      */
     public function setPassword($password)
     {
         $this->password = $password;
-    
+
         return $this;
     }
 
     /**
      * Get password
      *
-     * @return string 
+     * @return string
      */
     public function getPassword()
     {
@@ -106,17 +106,19 @@ class Users implements \Symfony\Component\Security\Core\User\UserInterface
     public function setEmail($email)
     {
         $this->email = $email;
+
         return $this;
     }
 
-    public function getRoles(){
+    public function getRoles()
+    {
         return array('ROLE_USER');
     }
 
-    public function getSalt(){
-
+    public function getSalt()
+    {
     }
-    public function eraseCredentials(){
-
+    public function eraseCredentials()
+    {
     }
 }

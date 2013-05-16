@@ -8,6 +8,7 @@
     {% if is_granted('ROLE_USER') %}
       {% if pagination is empty %}
         <p>No new messages!</p>
+        <div class="btn"><a href="{{ path('trivia_messenger_homepage') }}">Back to main</a></div>
       {% else %}
         <table class="table">
 
@@ -26,6 +27,8 @@
         <div class="navigation">
             {{ knp_pagination_render(pagination) }}
         </div>
+        <div class="btn"><a href="{{ path('trivia_messenger_homepage') }}">Back to main</a></div>
+
       {% endif %}
     {% endif %}
 {% endblock %}
