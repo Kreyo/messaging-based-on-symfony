@@ -34,3 +34,8 @@ trivia_messenger_sent:
 trivia_messenger_logout:
     path: /logout
     defaults: { _controller: TriviaMessengerBundle:User:logout}
+messenger_autocomplete:
+    path: /autocomplete
+    defaults: { _controller: TriviaMessengerBundle:System:autocomplete}
+    options:
+      expose: true

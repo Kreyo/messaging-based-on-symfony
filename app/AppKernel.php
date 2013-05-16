@@ -22,7 +22,7 @@ class AppKernel extends Kernel
             new Trivia\MessengerBundle\TriviaMessengerBundle(),
             new Bc\Bundle\BootstrapBundle\BcBootstrapBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
-
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
