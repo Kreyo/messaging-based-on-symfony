@@ -22,13 +22,12 @@ class SystemController extends Controller
             ->setParameter('term',$_REQUEST['term'] )
             ->getQuery()
             ->getResult();
-        $data = array();
         if ( $rs && mysql_num_rows($rs) )
         {
             while( $row = mysql_fetch_array($rs, MYSQL_ASSOC) )
             {
                 $data[] = array(
-                    'label' => $row['Username'],
+                    'label' => $row['Id'],
                     'value' => $row['Username']
                 );
             }
@@ -37,6 +36,7 @@ class SystemController extends Controller
 // jQuery wants JSON data
         echo json_encode($data);
         flush();
+        return $data;
     }
 
 }
