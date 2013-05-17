@@ -12,6 +12,7 @@
                <tr {% if not message.isRead %}class="success" {% endif %}>
                    <td><b>{% if message.getFromUser() != null %}{{ message.getFromUser().getUsername() }} {% endif %} </b>to <b>{{ message.getToUser().getUsername() }}</b></td>
                    <td>{{ message.getText() }}</td>
+                   <td>{{ message.getCreatedAt()|date('Y-m-d H:i:s') }}</td>
                    <td><a href="messages/view/{{ message.id }}">View</a></td>
                </tr>
 

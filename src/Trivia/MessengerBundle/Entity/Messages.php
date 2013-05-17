@@ -3,6 +3,7 @@
 namespace Trivia\MessengerBundle\Entity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Messages
@@ -48,6 +49,14 @@ class Messages
      */
 
     private $is_read;
+
+    /**
+     * @var datetime
+     *
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
 
     /**
      * Get id
@@ -148,5 +157,48 @@ class Messages
     public function isRead()
     {
         return $this->is_read;
+    }
+
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+
+
+    /**
+     * Set is_read
+     *
+     * @param boolean $isRead
+     * @return Messages
+     */
+    public function setIsRead($isRead)
+    {
+        $this->is_read = $isRead;
+
+        return $this;
+    }
+
+    /**
+     * Get is_read
+     *
+     * @return boolean 
+     */
+    public function getIsRead()
+    {
+        return $this->is_read;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     * @return Messages
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
     }
 }

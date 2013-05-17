@@ -1,8 +1,9 @@
 <?php
 
 namespace Trivia\MessengerBundle\Entity;
-
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Messages
@@ -22,103 +23,146 @@ class Messages
     private $id;
 
     /**
-     * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     *
+     * @ORM\ManyToOne(targetEntity="Users")
      */
-    private $name;
+    private $fromUser;
+
+    /**
+     *
+     *
+     * @ORM\ManyToOne(targetEntity="Users")
+     */
+    private $toUser;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="recipient", type="string", length=255)
-     */
-    private $recipient;
-
-    /**
-     * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="text", type="string", length=255)
      */
     private $text;
+    /**
+     * @var boolean
+     * @Assert\NotBlank()
+     * @ORM\Column(name="is_read", type="boolean")
+     */
 
+    private $is_read;
+
+    /**
+     * @var datetime
+     *
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
+
     public function getId()
     {
         return $this->id;
     }
 
     /**
-     * Set name
+     * Set fromUser
      *
-     * @param string $name
+     * @param  string   $fromUser
      * @return Messages
      */
-    public function setName($name)
+
+    public function setFromUser($fromUser)
     {
-        $this->name = $name;
-    
+        $this->fromUser = $fromUser;
+
         return $this;
     }
 
     /**
-     * Get name
+     * Get fromUser
      *
-     * @return string 
+     * @return string
      */
-    public function getName()
+    public function getFromUser()
     {
-        return $this->name;
+        return $this->fromUser;
     }
 
     /**
-     * Set recipient
+     * Set toUser
      *
-     * @param string $recipient
+     * @param  string   $toUser
      * @return Messages
      */
-    public function setRecipient($recipient)
+
+    public function setToUser($toUser)
     {
-        $this->recipient = $recipient;
-    
+        $this->toUser = $toUser;
+
         return $this;
     }
 
     /**
-     * Get recipient
+     * Get toUser
      *
-     * @return string 
+     * @return string
      */
-    public function getRecipient()
+    public function getToUser()
     {
-        return $this->recipient;
+        return $this->toUser;
     }
 
     /**
      * Set text
      *
-     * @param string $text
+     * @param  string   $text
      * @return Messages
      */
     public function setText($text)
     {
         $this->text = $text;
-    
+
         return $this;
     }
 
     /**
      * Get text
      *
-     * @return string 
+     * @return string
      */
     public function getText()
     {
         return $this->text;
     }
+
+    public function setRead()
+    {
+        $this->is_read = true;
+
+        return $this;
+    }
+
+    public function setUnread()
+    {
+        $this->is_read = false;
+
+        return $this;
+    }
+
+    public function isRead()
+    {
+        return $this->is_read;
+    }
+
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+
 }

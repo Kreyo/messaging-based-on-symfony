@@ -22,9 +22,13 @@ security:
 
     firewalls:
 
+        main_firewall:
+            pattern:    ^/login$
+            anonymous:  ~
+
         secured_area:
             pattern:  ^/
-            anonymous: ~
+
             form_login:
               login_path: trivia_messenger_login
               check_path: trivia_messenger_login_check

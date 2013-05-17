@@ -35,7 +35,8 @@
         "twitter/bootstrap": "2.3.*",
         "knplabs/knp-paginator-bundle": "dev-master",
         "jquery/jquery": "2.0.*",
-        "friendsofsymfony/jsrouting-bundle": "1.1.*@dev"
+        "friendsofsymfony/jsrouting-bundle": "1.1.*@dev",
+        "stof/doctrine-extensions-bundle": "~1.1@dev"
 
     },
     "scripts": {

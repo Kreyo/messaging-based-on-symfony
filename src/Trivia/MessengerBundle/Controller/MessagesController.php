@@ -30,6 +30,7 @@ class MessagesController extends Controller
             ->from('TriviaMessengerBundle:Messages', 'm')
             ->where('m.fromUser = :user OR m.toUser = :user')
             ->setParameter('user', $this->getUser())
+            ->orderBy('m.createdAt', 'DESC')
             ->getQuery()
             ->getResult();
         $index_paginator = $this->get('knp_paginator');
@@ -103,7 +104,7 @@ class MessagesController extends Controller
                             'user' => $this->getUser(),
                             'false'=> false,
             ))
-
+            ->orderBy('m.createdAt', 'DESC')
             ->getQuery()
             ->getResult();
         $index_paginator = $this->get('knp_paginator');
@@ -123,6 +124,7 @@ class MessagesController extends Controller
             ->from('TriviaMessengerBundle:Messages', 'm')
             ->where('m.fromUser = :user')
             ->setParameter('user', $this->getUser())
+            ->orderBy('m.createdAt', 'DESC')
             ->getQuery()
             ->getResult();
         $index_paginator = $this->get('knp_paginator');
