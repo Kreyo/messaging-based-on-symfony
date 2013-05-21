@@ -48,13 +48,13 @@ class MessagesController extends Controller
 
     public function createAction(Request $request)
     {
+      if($this->getUser()->getEmailToken() == null) {
         $message = new Messages();
         $form = $this->createFormBuilder()
 
             ->add('toUser', 'text')
             ->add('text', 'textarea')
             ->getForm();
-
         if ($request->isMethod('POST')) {
 
             $form->bind($request);
@@ -76,7 +76,8 @@ class MessagesController extends Controller
         }
 
         return $this->render('TriviaMessengerBundle:Messenger:create.html.twig', array('form' => $form->createView(),));
-
+      }
+      else return $this->render('TriviaMessengerBundle:Messenger:cheater.html.twig');
     }
 
     public function viewAction($id)

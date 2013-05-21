@@ -21,12 +21,13 @@
 
             {% endfor %}
         </table>
-        <br />
-        <div class='btn btn-success'><a href="{{ path('trivia_messenger_create') }}">Create new message</a></div>
-
         <div class="navigation">
             {{ knp_pagination_render(pagination) }}
         </div>
+        <br />
+        {% if app.user.getEmailToken() = null %}<div class='btn'><a href="{{ path('trivia_messenger_create') }}">Create new message</a></div>{% endif %}
+
+
         <div class="btn"><a href="{{ path('trivia_messenger_homepage') }}">Back to main</a></div>
 
       {% endif %}

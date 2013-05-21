@@ -41,6 +41,14 @@ class Users implements \Symfony\Component\Security\Core\User\UserInterface
      * @ORM\Column(name="email", type="string", length=255)
      */
     private $email;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="emailToken", type="string")
+     */
+    private $emailToken;
+
     /**
      * Get id
      *
@@ -107,6 +115,17 @@ class Users implements \Symfony\Component\Security\Core\User\UserInterface
     {
         $this->email = $email;
 
+        return $this;
+    }
+
+    public function getEmailToken()
+    {
+        return $this->emailToken;
+    }
+
+    public function setEmailToken($emailToken)
+    {
+        $this->emailToken = $emailToken;
         return $this;
     }
 

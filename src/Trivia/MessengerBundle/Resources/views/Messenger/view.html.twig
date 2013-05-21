@@ -4,7 +4,7 @@
     {% if message.getFromUser() != null %} <td> from <b>{{ message.getFromUser().getUsername() }}</b>{%  endif %} to <b>{{ message.getToUser().getUsername() }}</b></td>
     <td>{{ message.getText() }}</td>
     <br />
-    <div class="btn"><a href="{{ path('trivia_messenger_create') }}">Reply with a new message</a></div>
+    {% if app.user.getEmailToken() = null %}<div class="btn"><a href="{{ path('trivia_messenger_create') }}">Reply with a new message</a></div>{% endif %}
     <br />
     <div class="btn"><a href="{{ path('trivia_messenger_homepage') }}">Back to main</a></div>
 {% endblock %}

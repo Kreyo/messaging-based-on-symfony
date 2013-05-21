@@ -22,10 +22,10 @@
          {{ knp_pagination_render(pagination) }}
     </div>
     <br />
-    <div class='btn'><a href="{{ path('trivia_messenger_create') }}">Create new message</a></div>
+    {% if app.user.getEmailToken() = null %}<div class='btn'><a href="{{ path('trivia_messenger_create') }}">Create new message</a></div>{% endif %}
 
 
-     {% endif %}
+    {% endif %}
  {% else %}
      {% if error %}
          <div>{{ error.message }}</div>
