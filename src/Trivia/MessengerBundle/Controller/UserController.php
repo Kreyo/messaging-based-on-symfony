@@ -54,8 +54,21 @@ class UserController extends Controller
             $user->setUsername($formData['username']);
             $user->setEmail($formData['email']);
             $user->setPassword($formData['password']);
-            $user->setEmailToken(sha1(rand(42, 4711) . time()))
+            $user->setEmailToken(sha1(rand(42, 4711) . time()));
+<<<<<<< HEAD
+<<<<<<< HEAD
             if ($form->isValid() && $this->getDoctrine()->getRepository('TriviaMessengerBundle:Users')->findOneByUsername($formData['username'])==null) {
+=======
+=======
+>>>>>>> d68b810daa73d196a9d9d947538abae6f60f34d3
+
+            if ($form->isValid()
+                && $this->getDoctrine()->getRepository('TriviaMessengerBundle:Users')->findOneByUsername($formData['username']) == null) {
+
+<<<<<<< HEAD
+>>>>>>> d68b810daa73d196a9d9d947538abae6f60f34d3
+=======
+>>>>>>> d68b810daa73d196a9d9d947538abae6f60f34d3
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($user);
                 $em->flush();
@@ -71,15 +84,32 @@ class UserController extends Controller
 
                 $emailmessage = \Swift_Message::newInstance()
                     ->setSubject("Hey there, sailor")
-                    ->setFrom('symfony.messenger@gmail.com')
+                    ->setFrom($this->container->getParameter('mailer_from'))
                     ->setTo($user->getEmail())
-                    ->setBody($this->renderView('Trivia:MessengerBundle:email.html.twig', array('username' => $user->getUsername(), 'emailToken') => $user->getEmailToken()));
+<<<<<<< HEAD
+<<<<<<< HEAD
+                    ->setBody($this->renderView('TriviaMessengerBundle:Messenger:email.html.twig', array('username' => $user->getUsername(), 'emailToken' => $user->getEmailToken())));
+=======
+=======
+>>>>>>> d68b810daa73d196a9d9d947538abae6f60f34d3
+                    ->setBody($this->renderView('Trivia:MessengerBundle:email.html.twig',
+                        array(
+                            'username' => $user->getUsername(),
+                            'emailToken' => $user->getEmailToken()
+                        )
+                    ));
+<<<<<<< HEAD
+>>>>>>> d68b810daa73d196a9d9d947538abae6f60f34d3
+=======
+>>>>>>> d68b810daa73d196a9d9d947538abae6f60f34d3
                 $this->get('mailer')->send($emailmessage);
                 $token = new UsernamePasswordToken($user, null, 'secured_area', $user->getRoles());
                 $this->get('security.context')->setToken($token);
 
                 return $this->redirect($this->generateUrl('trivia_messenger_homepage'));
-            } else $form->get('username')->addError(new FormError('Well, this is awkward. Such username already exists!'));
+            } else {
+                $form->get('username')->addError(new FormError('Well, this is awkward. Such username already exists!'));
+            }
         }
 
         return $this->render('TriviaMessengerBundle:Messenger:register.html.twig', array('form' => $form->createView(),));
@@ -110,10 +140,13 @@ class UserController extends Controller
         return $this->redirect($this->generateUrl('trivia_messenger_homepage'));
     }
 
-    public function verifyAction()
+    public function verifyAction($token)
     {
-        $user = $this->getUser();
+        $user = $this->getDoctrine()->getManager()->getRepository('TriviaMessengerBundle:Users')->findOneByEmailToken($this->getRequest()->get('token'));
         $user->setEmailToken(null);
+        $this->getDoctrine()->getManager()->flush();
+        return $this->redirect($this->generateUrl('trivia_messenger_homepage'));
+
     }
 
 }

@@ -1,5 +1,5 @@
 <body>
     <p>Greetings <b>{{ username }}</b>! Please follow this URL to activate your account:</p>
-    {{ path('trivia_messenger_verify'), /emailToken }}
+    {{ path('trivia_messenger_verify', {token: emailToken}) }}
 
 </body>
