@@ -57,8 +57,11 @@ class UserController extends Controller
             $user->setEmailToken(sha1(rand(42, 4711) . time()));
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             if ($form->isValid() && $this->getDoctrine()->getRepository('TriviaMessengerBundle:Users')->findOneByUsername($formData['username'])==null) {
 =======
+=======
+>>>>>>> d68b810daa73d196a9d9d947538abae6f60f34d3
 =======
 >>>>>>> d68b810daa73d196a9d9d947538abae6f60f34d3
 
@@ -66,6 +69,9 @@ class UserController extends Controller
                 && $this->getDoctrine()->getRepository('TriviaMessengerBundle:Users')->findOneByUsername($formData['username']) == null) {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> d68b810daa73d196a9d9d947538abae6f60f34d3
+=======
 >>>>>>> d68b810daa73d196a9d9d947538abae6f60f34d3
 =======
 >>>>>>> d68b810daa73d196a9d9d947538abae6f60f34d3
@@ -88,8 +94,11 @@ class UserController extends Controller
                     ->setTo($user->getEmail())
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                     ->setBody($this->renderView('TriviaMessengerBundle:Messenger:email.html.twig', array('username' => $user->getUsername(), 'emailToken' => $user->getEmailToken())));
 =======
+=======
+>>>>>>> d68b810daa73d196a9d9d947538abae6f60f34d3
 =======
 >>>>>>> d68b810daa73d196a9d9d947538abae6f60f34d3
                     ->setBody($this->renderView('Trivia:MessengerBundle:email.html.twig',
@@ -99,6 +108,9 @@ class UserController extends Controller
                         )
                     ));
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> d68b810daa73d196a9d9d947538abae6f60f34d3
+=======
 >>>>>>> d68b810daa73d196a9d9d947538abae6f60f34d3
 =======
 >>>>>>> d68b810daa73d196a9d9d947538abae6f60f34d3
