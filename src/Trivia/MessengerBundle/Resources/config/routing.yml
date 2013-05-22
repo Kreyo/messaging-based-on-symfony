@@ -37,8 +37,11 @@ trivia_messenger_logout:
 trivia_messenger_verify:
     path: /verify/{token}
     defaults: { _controller: TriviaMessengerBundle:User:verify}
+trivia_messenger_resend:
+    path: /resend
+    defaults: { _controller: TriviaMessengerBundle:User:resend}
 messenger_autocomplete:
-    path: /autocomplete
+    pattern: /autocomplete
     defaults: { _controller: TriviaMessengerBundle:System:autocomplete}
     options:
       expose: true

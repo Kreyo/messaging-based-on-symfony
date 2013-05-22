@@ -72,7 +72,7 @@ class MessagesController extends Controller
 
                 return $this->redirect($this->generateUrl('trivia_messenger_homepage'));
 
-            } else { $form->get('toUser')->addError(new FormError('You must enter an existing username!')); }
+            } else $form->get('toUser')->addError(new FormError('You must enter an existing username!'));
         }
 
         return $this->render('TriviaMessengerBundle:Messenger:create.html.twig', array('form' => $form->createView(),));

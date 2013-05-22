@@ -5,13 +5,16 @@
 
 
 {% block content %}
+    {{ parent() }}
     {% if is_granted('ROLE_USER') %}
        {% if pagination is empty %}
-        <p>You have yet sent nothing!</p>
-        <div class='btn'><a href="{{ path('trivia_messenger_create') }}">Create new message</a></div>
-        <div class='btn'><a href="{{ path('trivia_messenger_homepage') }}">Back to main</a></div>
         <br />
-        <div class='btn btn-success'><a href="{{ path('trivia_messenger_create') }}">Create new message</a></div>
+        <p>You have yet sent nothing!</p>
+        {% if app.user.getEmailToken() == null %}<div class='btn'><a href="{{ path('trivia_messenger_create') }}">Create new message</a></div>{% endif %}
+        <br />
+        <div class='btn'><a href="{{ path('trivia_messenger_homepage') }}">Back to main</a></div>
+
+
        {% else %}
         <table class="table">
             {% for message in pagination %}
@@ -27,7 +30,7 @@
             {{ knp_pagination_render(pagination) }}
         </div>
         <br />
-        {% if app.user.getEmailToken() = null %}<div class='btn'><a href="{{ path('trivia_messenger_create') }}">Create new message</a></div>{% endif %}
+        {% if app.user.getEmailToken() == null %}<div class='btn'><a href="{{ path('trivia_messenger_create') }}">Create new message</a></div>{% endif %}
         <br/>
         <div class='btn'><a href="{{ path('trivia_messenger_homepage') }}">Back to main</a></div>
 
