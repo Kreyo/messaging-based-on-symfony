@@ -32,15 +32,24 @@
          <div>{{ error.message }}</div>
      {% endif %}
 
-     <form action="{{ path('trivia_messenger_login_check') }}" method="post">
-         <label for="username">Username:</label>
-         <input type="text" id="username" name="_username" value="{{ last_username }}" />
+     <form action="{{ path('trivia_messenger_login_check') }}" method="post" class="form-horizontal">
+         <div class="control-group">
+             <label class="control-label" for="username">Username:</label>
+             <div class="controls">
+                 <input type="text" id="username" name="_username" value="{{ last_username }}" placeholder="Username" />
+             </div>
+         </div>
 
-         <label for="password">Password:</label>
-         <input type="password" id="password" name="_password" />
-         <input type="hidden" name="_target_path" value="/messages" />
+         <div class="control-group">
+             <label class="control-label" for="password">Password:</label>
+             <div class="controls">
+
+                 <input type="password" id="password" name="_password" placeholder="password" />
+                 <input type="hidden" name="_target_path" value="/messages" />
+             </div>
+         </div>
          <br />
-         <button type="submit" class="btn">login</button>
+         <button type="submit" class="btn">Sign in</button>
      </form>
  {% endif %}
 {% endblock %}
