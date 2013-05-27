@@ -10,7 +10,7 @@
     <form method="post" {{ form_enctype(form) }} action="{{ path('trivia_messenger_create') }}">
         {{ form_errors(form) }}
 
-        {{ form_row(form.toUser, { 'type':'text'}) }}
+        {{ form_row(form.Recipient, { 'type':'text'}) }}
         {{ form_row(form.text) }}
         {{ form_rest(form) }}
         <br />

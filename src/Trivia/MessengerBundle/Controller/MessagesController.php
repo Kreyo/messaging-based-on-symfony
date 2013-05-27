@@ -52,7 +52,7 @@ class MessagesController extends Controller
         $message = new Messages();
         $form = $this->createFormBuilder()
 
-            ->add('toUser', 'text')
+            ->add('Recipient', 'text')
             ->add('text', 'textarea')
             ->getForm();
         if ($request->isMethod('POST')) {
@@ -63,16 +63,16 @@ class MessagesController extends Controller
             $message->setText($formData['text']);
             $message->setFromUser($this->getUser());
             $message->setUnread();
-            $message->setToUser($this->getDoctrine()->getManager()->getRepository('TriviaMessengerBundle:Users')->findOneByUsername($formData['toUser']));
+            $message->setToUser($this->getDoctrine()->getManager()->getRepository('TriviaMessengerBundle:Users')->findOneByUsername($formData['Recipient']));
 
-            if ($form->isValid() && $this->getDoctrine()->getRepository('TriviaMessengerBundle:Users')->findOneByUsername($formData['toUser'])!=null) {
+            if ($form->isValid() && $this->getDoctrine()->getRepository('TriviaMessengerBundle:Users')->findOneByUsername($formData['Recipient'])!=null) {
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($message);
                 $em->flush();
 
                 return $this->redirect($this->generateUrl('trivia_messenger_homepage'));
 
-            } else $form->get('toUser')->addError(new FormError('You must enter an existing username!'));
+            } else $form->get('Recipient')->addError(new FormError('You must enter an existing username!'));
         }
 
         return $this->render('TriviaMessengerBundle:Messenger:create.html.twig', array('form' => $form->createView(),));
