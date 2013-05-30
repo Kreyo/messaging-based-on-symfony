@@ -1,16 +1,37 @@
 {% extends 'TriviaMessengerBundle:Messenger:base.html.twig' %}
 {% block title %}Register{% endblock %}
 {% block content %}
-    <form method="post" {{ form_enctype(form) }}>
+    <form class="form-horizontal" method="post" action="{{ path('trivia_messenger_register') }}" {{ form_enctype(form) }}>
         {{ form_errors(form) }}
+        <div class="control-group">
+            <label class="control-label" for="username">Username</label>
+            <div class="controls">
 
-        {{ form_row(form.username, { 'type':'text','attr':{'placeholder': "Your Username",}}) }}
-        {{ form_row(form.email, { 'type':'email','attr':{'placeholder': "Your Email",}}) }}
-        {{ form_row(form.password.first, { 'type':'password','attr':{'placeholder': "password", 'label': "Enter your password:"}}) }}
-        {{ form_row(form.password.second, { 'type':'password', 'attr':{'placeholder': "repeat your password", 'label': "Repeat password"}}) }}
-
+                <input type="text" id="username" placeholder="Username" name="form[username]">
+                {{ form_errors(form.username) }}
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="email">Email</label>
+            <div class="controls">
+                <input type="text" id="email" placeholder="Email" name="form[email]">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="password.first">Password</label>
+            <div class="controls">
+                <input type="password" id="password.first" placeholder="Password" name="form[password.first]">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="password.second">Repeat password</label>
+            <div class="controls">
+                <input type="password" id="password.second" placeholder="Repeat your password" name="form[password.second]">
+            </div>
+        </div>
+        <div class="control-group">
+            <input type="submit" class="btn" value="Register">
+        </div>
         {{ form_rest(form) }}
-        <br />
-        <input type="submit" class="btn">
     </form>
 {% endblock %}
