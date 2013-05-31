@@ -1,37 +1,15 @@
 {% extends 'TriviaMessengerBundle:Messenger:base.html.twig' %}
+{% form_theme form 'BcBootstrapBundle:Form:form_div_layout.html.twig' %}
 {% block title %}Register{% endblock %}
 {% block content %}
     <form class="form-horizontal" method="post" action="{{ path('trivia_messenger_register') }}" {{ form_enctype(form) }}>
         {{ form_errors(form) }}
-        <div class="control-group">
-            <label class="control-label" for="username">Username</label>
-            <div class="controls">
-
-                <input type="text" id="username" placeholder="Username" name="form[username]">
-                {{ form_errors(form.username) }}
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label" for="email">Email</label>
-            <div class="controls">
-                <input type="text" id="email" placeholder="Email" name="form[email]">
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label" for="password.first">Password</label>
-            <div class="controls">
-                <input type="password" id="password.first" placeholder="Password" name="form[password.first]">
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label" for="password.second">Repeat password</label>
-            <div class="controls">
-                <input type="password" id="password.second" placeholder="Repeat your password" name="form[password.second]">
-            </div>
-        </div>
-        <div class="control-group">
-            <input type="submit" class="btn" value="Register">
-        </div>
+        {{ form_row(form.username) }}
+        {{ form_row(form.email) }}
+        {{ form_row(form.password.first) }}
+        {{ form_row(form.password.second) }}
         {{ form_rest(form) }}
+        <br />
+        <input type="submit" class="btn" value="Register!">
     </form>
 {% endblock %}

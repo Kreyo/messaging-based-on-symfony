@@ -191,4 +191,7 @@ sonata_admin:
 
     # set to true to persist filter settings per admin module in the user's session
     persist_filters: true
-
+twig:
+  form:
+    resources:
+    - "BcBootstrapBundle:Form:form_div_layout.html.twig"
