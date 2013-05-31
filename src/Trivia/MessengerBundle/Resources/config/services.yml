@@ -2,6 +2,11 @@ parameters:
 #    trivia_messenger.example.class: Trivia\MessengerBundle\Example
 
 services:
-#    trivia_messenger.example:
-#        class: %trivia_messenger.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+
+   trivia.trivia_messenger.admin.kkaka:
+      class: Trivia\MessengerBundle\Admin\UserAdmin
+      tags:
+        - { name: sonata.admin, manager_type: orm, group: ulala, label: sosisochki}
+      arguments: [null, Trivia\MessengerBundle\Entity\Users, TriviaMessengerBundle:UserAdmin]
+
+

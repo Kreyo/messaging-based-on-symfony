@@ -2,12 +2,12 @@
 {% form_theme form 'BcBootstrapBundle:Form:form_div_layout.html.twig' %}
 {% block title %}Register{% endblock %}
 {% block content %}
-    <form class="form-horizontal" method="post" action="{{ path('trivia_messenger_register') }}" {{ form_enctype(form) }}>
+    <form method="post" action="{{ path('trivia_messenger_register') }}" {{ form_enctype(form) }}>
         {{ form_errors(form) }}
         {{ form_row(form.username) }}
         {{ form_row(form.email) }}
-        {{ form_row(form.password.first) }}
-        {{ form_row(form.password.second) }}
+        {{ form_row(form.password.first,  { 'label':'Enter password'}) }}
+        {{ form_row(form.password.second,  { 'label':'Repeat password'}) }}
         {{ form_rest(form) }}
         <br />
         <input type="submit" class="btn" value="Register!">
