@@ -21,7 +21,7 @@
     <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
     <script>
         jQuery(document).ready(function($){
-            $('#form_toUser').autocomplete({source:Routing.generate('messenger_autocomplete'), minLength:2});
+            $('#form_Recipient').autocomplete({source:Routing.generate('messenger_autocomplete'), minLength:2});
         });
     </script>
 {% endblock %}

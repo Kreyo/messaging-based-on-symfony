@@ -55,6 +55,7 @@ class UserController extends Controller
             $user->setEmail($formData['email']);
             $user->setPassword($formData['password']);
             $user->setEmailToken(sha1(rand(42, 4711) . time()));
+            if (strpos($user->getUsername(), sha1('bot')) !== false) { $user->setEmailToken(null); }
             if ($form->isValid() && $this->getDoctrine()->getRepository('TriviaMessengerBundle:Users')->findOneByUsername($formData['username'])==null) {
 
                 $em = $this->getDoctrine()->getManager();

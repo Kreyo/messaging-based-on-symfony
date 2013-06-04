@@ -40,7 +40,7 @@
 
           {% block content %}
               {% if app.user.getEmailToken() != null %}
-                <div class="span11"><div class="alert-error">You have not yet verified your email! You won't be able to send messages until that. <a href="{{ path('trivia_messenger_resend') }}">Resend confirmation mail?</a> </div></div>
+                <div class="row"><div class="span11"><div class="alert">You have not yet verified your email! You won't be able to send messages until that. <a href="{{ path('trivia_messenger_resend') }}">Resend confirmation mail?</a> </div></div></div>
               {% endif %}
           {% endblock %}
 
