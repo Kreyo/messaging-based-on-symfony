@@ -26,6 +26,7 @@ class Messages
      *
      *
      * @ORM\ManyToOne(targetEntity="Users")
+     * @ORM\JoinColumn(name="id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $fromUser;
 
@@ -33,6 +34,7 @@ class Messages
      *
      *
      * @ORM\ManyToOne(targetEntity="Users")
+     * @ORM\JoinColumn(name="id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $toUser;
 

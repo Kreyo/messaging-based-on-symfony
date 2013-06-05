@@ -3,6 +3,7 @@
 namespace Trivia\MessengerBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Trivia\MessengerBundle\Entity\Users;
 
 class MessengerControllerTest extends WebTestCase
 {
@@ -36,6 +37,12 @@ class MessengerControllerTest extends WebTestCase
         $form['password.first'] = $botpassword2;
         $form['password.second'] = $botpassword2;
         $crawler = $client->submit($form);
+        $bot = self::$kernel->getContainer()->get('doctrine')->getRepository('TriviaMessengerBundle:Users')->findOneByUsername($botname2);
+        $bot->setEmailToken(null);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($bot);
+        $em->flush();
+
         $this->assertTrue($client->getResponse()->isRedirect());
         // second redirect? perfect. let's send a message!
 
@@ -47,6 +54,13 @@ class MessengerControllerTest extends WebTestCase
         $form['text'] = 'Heyheyhey, we are both robots!';
         $crawler = $client->submit($form);
         $this->assertTrue($client->getResponse()->isRedirect());
+        // Okay, I'm tired. Let's delete these fuckers.
+        $em->delete($bot);
+        $bot = self::$kernel->getContainer()->get('doctrine')->getRepository('TriviaMessengerBundle:Users')->findOneByUsername($botname1);
+        $em->delete($bot);
+        $em->flush();
+        $this->assertTrue(self::$kernel->getContainer()->get('doctrine')->getRepository('TriviaMessengerBundle:Users')->findOneByUsername($botname1) == false);
+
 
     }
 }
