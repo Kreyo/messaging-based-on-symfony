@@ -53,7 +53,11 @@ class MessagesController extends Controller
         $form = $this->createFormBuilder()
 
             ->add('Recipient', 'text')
-            ->add('text', 'textarea')
+            ->add('text', 'textarea', array(
+                'attr' => array(
+                    'class' => 'tinymce'
+                )
+            ))
             ->getForm();
         if ($request->isMethod('POST')) {
 

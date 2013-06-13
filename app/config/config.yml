@@ -179,3 +179,12 @@ twig:
   form:
     resources:
     - "BcBootstrapBundle:Form:form_div_layout.html.twig"
+stfalcon_tinymce:
+        include_jquery: true
+        tinymce_jquery: true
+        textarea_class: "tinymce"
+        language: %locale%
+        theme:
+            simple:
+                mode: "textareas"
+                theme: "simple"
